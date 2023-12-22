@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <div class="character">
+    <div class="pictureOfCharacter">
+      <img src="{{url}}" alt="pictureOfCharacter">
+    </div>
+    <div class="infoOfCharacter">
+      <h4>{{name}}</h4>
+
+      <div class="btns-char">
+        <button>HOMEPAGE</button>
+        <button>WIKI</button>
+      </div>
+    </div>
+  </div>
+
+  <p>{{info}}</p>
+
+  <ul> COMICS:
+    <li *ngFor="let comic of comics">{{comic?.name}}</li>
+  </ul>
+</div>

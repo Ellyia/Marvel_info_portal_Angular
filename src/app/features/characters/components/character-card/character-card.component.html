@@ -1,0 +1,8 @@
+<div class="wrapper" (click)="emitCharacterID()">
+  <div class="pictureOfCharacter">
+    <img src="{{char.thumbnail.path + '.' + char.thumbnail.extension}}" alt="pictureOfCharacter">
+  </div>
+  <div class="nameOfCharacter">
+    {{char.name | uppercase}}
+  </div>
+</div>

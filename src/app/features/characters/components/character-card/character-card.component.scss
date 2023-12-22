@@ -1,0 +1,30 @@
+.wrapper {
+  background-color: rgb(48, 38, 38);
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+
+    &:hover {
+      transform: translate(-10px, -10px);
+      border-radius: 50%;
+      transition: 0.5s transform;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 5px gray;
+    transform: translate(0px, -5px);
+    transition: 0.3s transform;
+  }
+
+  .nameOfCharacter {
+    height: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

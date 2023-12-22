@@ -1,0 +1,33 @@
+<div class="wrapper">
+
+  <app-random-character></app-random-character>
+
+  <div div class="wrapper-all-chars">
+    <div class="wrapper-characters">
+      <app-character-card
+        *ngFor="let char of list$ | async"
+        [char]="char"
+        (idToShow)="showCharacter($event)"
+      >
+      </app-character-card>
+    </div>
+
+    <div class="wrapper-aside">
+      <app-character-info
+        *ngIf="char; else pleaseSelect"
+        [character]="character$ | async"
+      >
+      </app-character-info>
+
+      <ng-template #pleaseSelect>
+        <p class="visible-wrap">
+          Please, select a character to see information
+        </p>
+      </ng-template>
+
+    </div>
+  </div>
+
+  <img class="bg-decoration" src="../../../assets/img/vision.png" alt="vision"/>
+
+</div>

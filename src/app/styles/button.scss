@@ -1,0 +1,16 @@
+
+@mixin btn($color, $bgcolor) {
+  background: $bgcolor;
+  background:
+    linear-gradient(135deg, transparent 5px, $bgcolor 0) left,
+    linear-gradient(-45deg, transparent 5px, $bgcolor 0) right;
+  color: $color;
+  padding: 3px;
+  border: none;
+  width: 100px;
+  font-size: 12px;
+  cursor: pointer;
+
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
