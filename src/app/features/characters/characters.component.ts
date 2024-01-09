@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 import { RandomCharacterComponent } from './components/random-character/random-character.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
-import { MarvelService } from './services/marvel.service';
+import { CharactersMarvelService } from './services/marvel.service';
 import { CharacterInfoComponent } from './components/character-info/character-info.component';
+import { MarvelChar } from './models/characters.model';
 
 @Component({
   selector: 'app-characters',
@@ -14,16 +15,27 @@ import { CharacterInfoComponent } from './components/character-info/character-in
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss'
 })
-export class CharactersComponent {
-  list$: Observable<any[]> = this.marvelService.getCharacters();
+export class CharactersComponent implements OnDestroy {
+  list$!: Observable<MarvelChar[]>;
+  subs!: Subscription;
 
-  character$!: Observable<any>;
-  char: boolean = false;
+  character$: MarvelChar | null = null;
 
-  constructor(private marvelService: MarvelService){}
+  constructor(private charactersService: CharactersMarvelService){
+    this.list$ = this.charactersService.getCharacters();
+  }
 
-  showCharacter(id: any) {
-    this.character$ = this.marvelService.getCharacter(id);
-    this.char = true;
+  // ngOnInit(): void {
+  //   this.list$ = this.marvelService.getCharacters();
+  // }
+
+  showCharacter(id: number): void {
+    this.subs = this.charactersService.getCharacter(id).subscribe(resp => {
+      this.character$ = resp;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

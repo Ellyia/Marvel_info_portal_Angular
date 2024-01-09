@@ -1,8 +1,7 @@
-@import '../../../../styles/button.scss';
+@import 'variables';
+@import 'mixines';
 
-$primary-darkcolor: #575454;
-
-.wrapper {
+.wrapper { // mixin
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px 1px gray;
@@ -23,9 +22,7 @@ $primary-darkcolor: #575454;
     }
 
     .infoOfCharacter {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      @include flex(_, column, space-between);
 
       h4 {
         text-align: center;
@@ -36,11 +33,11 @@ $primary-darkcolor: #575454;
         flex-direction: column;
 
         button {
-          @include btn(#fff, $primary-darkcolor);
+          @include btn(#fff, $primary-dark);
 
           &:first-child {
+            @include btn(#fff, $darkred);
             margin-bottom: 10px;
-            @include btn(#fff, darkred);
           }
         }
       }
@@ -53,7 +50,15 @@ $primary-darkcolor: #575454;
     margin-bottom: 10px;
   }
 
+  ul span {
+    display: block;
+    margin-bottom: 10px;
+  }
+
   li {
     list-style: none;
+    box-shadow: 0 2px 5px 0px gray;
+    margin-bottom: 5px;
+    padding: 2px 10px;
   }
 }

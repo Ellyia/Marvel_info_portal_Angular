@@ -7,15 +7,15 @@
       <app-character-card
         *ngFor="let char of list$ | async"
         [char]="char"
-        (idToShow)="showCharacter($event)"
+        (onCardClick)="showCharacter($event)"
       >
       </app-character-card>
     </div>
 
     <div class="wrapper-aside">
       <app-character-info
-        *ngIf="char; else pleaseSelect"
-        [character]="character$ | async"
+        *ngIf="character$; else pleaseSelect"
+        [character]="character$"
       >
       </app-character-info>
 
@@ -28,6 +28,6 @@
     </div>
   </div>
 
-  <img class="bg-decoration" src="../../../assets/img/vision.png" alt="vision"/>
+  <img class="bg-decoration" src="assets/img/vision.png" alt="vision"/>
 
 </div>

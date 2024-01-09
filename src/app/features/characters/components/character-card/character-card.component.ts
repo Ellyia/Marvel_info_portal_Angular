@@ -11,9 +11,15 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class CharacterCardComponent {
   @Input() char!: any;
-  @Output() idToShow = new EventEmitter<number>();
+  @Output() onCardClick = new EventEmitter<number>();
 
-  emitCharacterID() {
-    this.idToShow.emit(this.char.id);
+  charImgUrl!: string;
+
+  ngOnInit(): void {
+    this.charImgUrl = this.char?.thumbnail.path + '.' + this.char?.thumbnail.extension;
+  }
+
+  emitCharacterID(): void {
+    this.onCardClick.emit(this.char.id);
   }
 }

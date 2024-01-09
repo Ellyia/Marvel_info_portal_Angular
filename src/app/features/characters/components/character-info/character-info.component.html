@@ -4,7 +4,7 @@
       <img src="{{url}}" alt="pictureOfCharacter">
     </div>
     <div class="infoOfCharacter">
-      <h4>{{name}}</h4>
+      <h4>{{character?.name}}</h4>
 
       <div class="btns-char">
         <button>HOMEPAGE</button>
@@ -13,9 +13,9 @@
     </div>
   </div>
 
-  <p>{{info}}</p>
+  <p>{{character?.description}}</p>
 
-  <ul> COMICS:
-    <li *ngFor="let comic of comics">{{comic?.name}}</li>
+  <ul> <span>COMICS:</span>
+    <li *ngFor="let comic of character?.comics?.items">{{comic?.name}}</li>
   </ul>
 </div>
