@@ -1,0 +1,38 @@
+.wrapper {
+  margin: 0 4%;
+
+  .wrapper-all-chars {
+    display: grid;
+    grid-template-areas:
+    "characters aside";
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+
+    .wrapper-characters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      // grid-auto-rows: minmax(100px, auto);
+      grid-area: "characters";
+    }
+
+    .wrapper-aside {
+      grid-area: "aside";
+
+      .visible-wrap {
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px 1px gray;
+      }
+    }
+  }
+
+  .bg-decoration {
+    width: 30%;
+    position: absolute;
+    right: -1%;
+    bottom: -70%;
+    z-index: -1;
+  }
+
+}
