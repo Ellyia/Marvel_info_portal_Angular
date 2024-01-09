@@ -1,4 +1,7 @@
+@import 'mixines';
+
 div {
+  @include flex(_, center, center);
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -8,9 +11,6 @@ div {
   transform: translate(-50%, -50%);
   background-color: rgb(243, 10, 10);
   color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items:center;
 
   p {
     text-align: center;
