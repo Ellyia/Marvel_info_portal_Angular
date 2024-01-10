@@ -13,19 +13,12 @@ import { Comic, MarvelChar } from '@characters/models/characters.model';
 export class CharacterInfoComponent implements OnChanges {
   @Input() character!: MarvelChar | null;
 
-  // MarvelChar = {
-  //   name: '',
-    url!: string;
-  //   info: '',
-  //   comics: <Comic>[];
-  // }
+  url!: string;
+
 
   ngOnChanges(): void {
     if(this.character) {
-      // this.MarvelChar.name = this.character?.name;
       this.url = `${this.character.thumbnail.path}.${this.character.thumbnail.extension}`;
-      // this.MarvelChar.info = this.character.description;
-      // this.MarvelChar.comics = this.character.comics.items;
     }
 
   }

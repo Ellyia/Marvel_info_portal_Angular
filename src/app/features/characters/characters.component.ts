@@ -25,10 +25,6 @@ export class CharactersComponent implements OnDestroy {
     this.list$ = this.charactersService.getCharacters();
   }
 
-  // ngOnInit(): void {
-  //   this.list$ = this.marvelService.getCharacters();
-  // }
-
   showCharacter(id: number): void {
     this.subs = this.charactersService.getCharacter(id).subscribe(resp => {
       this.character$ = resp;
