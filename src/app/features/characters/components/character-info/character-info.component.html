@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="character">
     <div class="pictureOfCharacter">
-      <img src="{{url}}" alt="pictureOfCharacter">
+      <img src="{{character?.thumbnail}}" alt="pictureOfCharacter">
     </div>
     <div class="infoOfCharacter">
       <h4>{{character?.name}}</h4>
@@ -16,6 +16,6 @@
   <p>{{character?.description}}</p>
 
   <ul> <span>COMICS:</span>
-    <li *ngFor="let comic of character?.comics?.items">{{comic?.name}}</li>
+    <li *ngFor="let comic of character?.comics">{{comic?.name}}</li>
   </ul>
 </div>

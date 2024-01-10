@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { RandomCharacterComponent } from './components/random-character/random-character.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
 import { CharactersMarvelService } from './services/marvel.service';
 import { CharacterInfoComponent } from './components/character-info/character-info.component';
-import { MarvelChar } from './models/characters.model';
+import { CustomMarvelChar, MarvelChar } from './models/characters.model';
+import { SpinnerService } from '@core/services/spinner.service';
 
 @Component({
   selector: 'app-characters',
@@ -16,12 +17,12 @@ import { MarvelChar } from './models/characters.model';
   styleUrl: './characters.component.scss'
 })
 export class CharactersComponent implements OnDestroy {
-  list$!: Observable<MarvelChar[]>;
+  list$!: Observable<CustomMarvelChar[]>;
   subs!: Subscription;
 
-  character$: MarvelChar | null = null;
+  character$: CustomMarvelChar | null = null;
 
-  constructor(private charactersService: CharactersMarvelService){
+  constructor(private charactersService: CharactersMarvelService, private spinnerService: SpinnerService){
     this.list$ = this.charactersService.getCharacters();
   }
 

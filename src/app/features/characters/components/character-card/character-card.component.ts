@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { CustomMarvelChar } from '@characters/models/characters.model';
 
 @Component({
   selector: 'app-character-card',
@@ -10,14 +11,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterCardComponent {
-  @Input() char!: any;
+  @Input() char!: CustomMarvelChar;
   @Output() onCardClick = new EventEmitter<number>();
-
-  charImgUrl!: string;
-
-  ngOnInit(): void {
-    this.charImgUrl = this.char?.thumbnail.path + '.' + this.char?.thumbnail.extension;
-  }
 
   emitCharacterID(): void {
     this.onCardClick.emit(this.char.id);

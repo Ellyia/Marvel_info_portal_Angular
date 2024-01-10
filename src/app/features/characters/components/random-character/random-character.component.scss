@@ -34,6 +34,13 @@
     .infoOfCharacter {
       @include flex(_, column,space-between);
       width: 100%;
+
+      // &p {
+      //   white-space: nowrap;
+      //   overflow: hidden;
+      //   text-overflow: ellipsis;
+      //   max-width: 100px;
+      // }
     }
   }
 

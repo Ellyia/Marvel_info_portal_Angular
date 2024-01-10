@@ -49,3 +49,13 @@ export interface Collection {
   items: Comic[];
   returned: number;
 }
+
+export interface CustomMarvelChar {
+  name: string,
+  description: string,
+  thumbnail: string,
+  homepage: string,
+  wiki: string,
+  comics: Comic[],
+  id: number
+}
