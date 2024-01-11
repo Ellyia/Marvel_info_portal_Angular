@@ -1,3 +1,6 @@
+@import 'mixines';
+@import 'variables';
+
 .wrapper {
   margin: 0 4%;
 
@@ -14,6 +17,15 @@
       gap: 20px;
       grid-auto-rows: minmax(100px, auto);
       grid-area: "characters";
+      margin-bottom: 20px;
+    }
+
+    button {
+      @include btn(#fff, $darkred);
+      width: 180px;
+      display: block;
+      padding: 5px 0;
+      margin: 0 auto 20px;
     }
 
     .wrapper-aside {

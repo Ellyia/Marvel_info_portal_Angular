@@ -2,14 +2,22 @@
 
   <app-random-character></app-random-character>
 
-  <div div class="wrapper-all-chars">
-    <div class="wrapper-characters">
-      <app-character-card
-        *ngFor="let char of list$ | async"
-        [char]="char"
-        (onCardClick)="showCharacter($event)"
+  <div class="wrapper-all-chars">
+    <div>
+      <div class="wrapper-characters"
+      infiniteScroll
+      [infiniteScrollDistance]="0"
+      [infiniteScrollThrottle]="2000"
+      (scrolled)="loadMore()"
       >
-      </app-character-card>
+        <app-character-card
+          *ngFor="let char of list$"
+          [char]="char"
+          (onCardClick)="showCharacter($event)"
+        >
+        </app-character-card>
+      </div>
+      <!-- <button *ngIf="list$.length > 0" (click)="loadMore()">Load more ...</button> -->
     </div>
 
     <div class="wrapper-aside">

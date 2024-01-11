@@ -15,10 +15,6 @@ export class RandomCharacterComponent implements OnInit, OnDestroy {
   id!: number;
   subs!: Subscription;
 
-  thumbnail!: string;
-  homepage!: string;
-  wiki!: string;
-
   char: CustomMarvelChar | null = null;
 
   constructor(private charactersService: CharactersMarvelService){}
@@ -38,7 +34,7 @@ export class RandomCharacterComponent implements OnInit, OnDestroy {
   }
 
   redirectToWiki(): void {
-    window.open(this.wiki, '_blank');
+    window.open(this.char?.wikiUrl, '_blank');
   }
 
   ngOnDestroy(): void {

@@ -8,17 +8,14 @@ import { SpinnerService } from '@core/services/spinner.service';
   providedIn: 'root'
 })
 export class CharactersMarvelService {
-  charsLimit: number = 9;
-  charsOffset: number = 9;
 
   constructor(private http: HttpClient, private spinnerService: SpinnerService) { }
 
-  getCharacters(): Observable<CustomMarvelChar[]> {
-
+  getCharacters(charsLimit: number, charsOffset: number): Observable<CustomMarvelChar[]> {
     this.spinnerService.setLoader(true); // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
-      `/characters?limit=${this.charsLimit}&offset=${this.charsOffset}`
+      `/characters?limit=${charsLimit}&offset=${charsOffset}`
     ).pipe(
       map(res => res.data.results),
       map(res => {
@@ -29,7 +26,6 @@ export class CharactersMarvelService {
   }
 
   getCharacter(id: number): Observable<CustomMarvelChar> {
-
     this.spinnerService.setLoader(true); // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
@@ -46,9 +42,9 @@ export class CharactersMarvelService {
       id: char.id,
       name: char.name,
       description: char.description,
-      thumbnail: `${char.thumbnail.path}.${char.thumbnail.extension}`,
-      homepage: char.urls[0].url,
-      wiki: char.urls[1].url,
+      thumbnailUrl: `${char.thumbnail.path}.${char.thumbnail.extension}`,
+      homepageUrl: char.urls[0].url,
+      wikiUrl: char.urls[1].url,
       comics: char.comics.items
     }
   }

@@ -53,9 +53,9 @@ export interface Collection {
 export interface CustomMarvelChar {
   name: string,
   description: string,
-  thumbnail: string,
-  homepage: string,
-  wiki: string,
+  thumbnailUrl: string,
+  homepageUrl: string,
+  wikiUrl: string,
   comics: Comic[],
   id: number
 }

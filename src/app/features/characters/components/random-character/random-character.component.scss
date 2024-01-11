@@ -5,7 +5,7 @@
   width: 50%;
   background-color: $background-color;
   color: $color;
-  padding: 2% 3%;
+  padding: 2% 2%;
 }
 
 .wrapper {
@@ -22,11 +22,11 @@
 
     .pictureOfCharacter {
       width: 40%;
-      margin-right: 10px;
+      margin-right: 20px;
 
       img {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
         object-fit: cover;
       }
     }
@@ -47,6 +47,11 @@
   .random {
     @include random-part(rgb(48, 38, 38), #fff);
     @include flex(_, column,space-between);
+    font-size: 16px;
+
+    div>p {
+      margin-bottom: 10px;
+    }
 
     .bg-decoration {
       width: 100px;
