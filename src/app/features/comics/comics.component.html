@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <div class="wrapper-comics">
+    <app-comic-card
+    *ngFor="let comic of comicsList$"
+    [comic]="comic"
+    (onCardClick)="showComic($event)"
+  >
+  </app-comic-card>
+  </div>
+
+  <!-- <button *ngIf="comicsList$.length > 0" (click)="loadMore()">Load more ...</button> -->
+</div>

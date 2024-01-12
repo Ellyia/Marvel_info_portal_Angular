@@ -2,7 +2,7 @@
 @import 'variables';
 
 .wrapper {
-  margin: 0 4%;
+  margin: 0 6% 20px;
 
   .wrapper-all-chars {
     display: grid;
@@ -30,6 +30,9 @@
 
     .wrapper-aside {
       grid-area: "aside";
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .visible-wrap {
         padding: 20px;
@@ -39,10 +42,10 @@
     }
   }
 
-  .bg-decoration {
-    width: 30%;
+  .bg-decoration { //
+    width: 35%;
     position: absolute;
-    right: -1%;
+    // right: -1%;
     bottom: -70%;
     z-index: -1;
   }
