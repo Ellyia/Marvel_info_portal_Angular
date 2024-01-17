@@ -1,0 +1,30 @@
+@import 'mixines';
+@import 'variables';
+
+.wrapper {
+  background-color: transparent;
+  cursor: pointer;
+  color: $primary-dark;
+
+  img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 5px gray;
+    transform: translate(0px, -5px);
+    transition: 0.3s transform;
+  }
+
+  .info-of-comic {
+    padding-top: 10px;
+    font-size: 12px;
+
+    p:first-child {
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+  }
+}

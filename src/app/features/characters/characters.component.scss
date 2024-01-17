@@ -2,7 +2,8 @@
 @import 'variables';
 
 .wrapper {
-  margin: 0 6% 20px;
+  padding: $common-padding;
+  margin-bottom: $common-margin-bottom;
 
   .wrapper-all-chars {
     display: grid;
@@ -12,12 +13,13 @@
     gap: 20px;
 
     .wrapper-characters {
+      margin-bottom: $common-margin-bottom;
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       grid-auto-rows: minmax(100px, auto);
       grid-area: "characters";
-      margin-bottom: 20px;
     }
 
     button {

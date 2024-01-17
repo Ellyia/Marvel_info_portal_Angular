@@ -1,0 +1,47 @@
+@import 'mixines';
+@import 'variables';
+
+.wrapper {
+  padding: $common-padding;
+  margin-bottom: $common-margin-bottom;
+
+  .comic {
+    display: grid;
+    grid-template-areas:
+    "img info btn";
+    grid-template-columns: 2fr 4fr 1fr;
+    gap: 40px;
+  }
+
+  .img {
+    // width: 180px;
+    grid-area: "img";
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .info {
+    grid-area: "info";
+
+    h3, p {
+      margin-bottom: 20px;
+    }
+  }
+
+  .btn { // flex
+    grid-area: "btn";
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: end;
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CustomMarvelChar } from '@characters/models/characters.model';
+import { Comic, CustomMarvelChar } from '@characters/models/characters.model';
 
 @Component({
   selector: 'app-character-info',

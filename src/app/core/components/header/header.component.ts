@@ -13,11 +13,11 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   toCharacters() {
-    this.router.navigate(['app-characters']);
+    this.router.navigate(['characters']);
   }
 
   toComics() {
-    this.router.navigate(['app-comics']);
+    this.router.navigate(['comics/all']);
   }
 
   toUs() {

@@ -1,0 +1,11 @@
+<div class="wrapper" (click)="emitComicID()">
+  <div class="picture-of-comic">
+    <img src="{{comic.thumbnailUrl}}" alt="comic">
+  </div>
+  <div class="info-of-comic">
+    <p>
+      {{comic.title | uppercase}}
+    </p>
+    <p>{{comic.price}}</p>
+  </div>
+</div>

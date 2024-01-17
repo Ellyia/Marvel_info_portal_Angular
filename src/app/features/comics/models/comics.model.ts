@@ -10,11 +10,11 @@ export interface MarvelApiComicsResponse {
     limit: number;
     total: number;
     count: number;
-    results: MarvelComics[];
+    results: MarvelComic[];
   };
 }
 
-export interface MarvelComics {
+export interface MarvelComic {
   id: number;
   digitalId: number;
   title: string;
@@ -95,4 +95,18 @@ export interface MarvelComics {
     items: [];
     returned: number;
   }
+}
+
+export interface CustomMarvelComic {
+  id: number;
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  price: string;
+  textObjects: {
+    language: string;
+    text: string;
+    type: string;
+  };
+  pages: number
 }

@@ -1,14 +1,16 @@
 @import 'mixines';
+@import 'variables';
 
 header {
   @include flex(center, _, space-between);
 
+  padding: $common-padding;
+  margin-bottom: $common-margin-bottom;
+
   background-color: #fff;
   box-shadow: 0 5px 10px -5px gray;
   height: 65px;
-  padding: 0 6%;
   color: rgb(36, 34, 34);
-  margin-bottom: 20px;
 
   p {
     background-color: rgba(240, 9, 9);

@@ -2,14 +2,16 @@
 @import 'variables';
 
 .wrapper {
-  margin: 0 6% 20px;
+  padding: $common-padding;
+  margin-bottom: $common-margin-bottom;
 
     .wrapper-comics {
+      margin-bottom: $common-margin-bottom;
+
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
       grid-auto-rows: minmax(100px, auto);
-      margin-bottom: 20px;
     }
 
     button {
