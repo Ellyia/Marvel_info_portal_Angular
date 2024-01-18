@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { CustomMarvelChar} from './models/characters.model';
 @Component({
   selector: 'app-characters',
   standalone: true,
-  imports: [ CommonModule, RandomCharacterComponent, CharacterCardComponent, CharacterInfoComponent, InfiniteScrollModule ],
+  imports: [ NgFor, NgIf, RandomCharacterComponent, CharacterCardComponent, CharacterInfoComponent, InfiniteScrollModule ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss'
 })
@@ -31,11 +31,12 @@ export class CharactersComponent implements OnDestroy {
   }
 
   showCharacters(): void {
-    this.subs = this.charactersService.getCharacters(this.charsLimit, this.charsOffset).subscribe(
-      resp => {
-        this.list$ = [...this.list$, ...resp];
-      }
-    );
+    this.subs = this.charactersService.getCharacters(this.charsLimit, this.charsOffset)
+      .subscribe(
+        resp => {
+          this.list$ = [...this.list$, ...resp];
+        }
+      );
   }
 
   showCharacter(id: number): void {

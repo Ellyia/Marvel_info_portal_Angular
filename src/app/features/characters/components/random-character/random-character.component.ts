@@ -1,4 +1,3 @@
-// import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CharactersMarvelService } from '@characters/services/marvel.service';
