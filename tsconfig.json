@@ -7,9 +7,6 @@
       "@characters/*": [
         "app/features/characters/*"
       ],
-      "@coreComponents/*": [
-        "app/core/components/*"
-      ],
       "@core/*": [
         "app/core/*"
       ]

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { RandomCharacterComponent } from './components/random-character/random-character.component';
@@ -26,9 +26,10 @@ export class CharactersComponent implements OnDestroy {
   }
 
   showCharacter(id: number): void {
-    this.subs = this.charactersService.getCharacter(id).subscribe(resp => {
-      this.character$ = resp;
-    });
+    this.subs = this.charactersService.getCharacter(id)
+      .subscribe(resp => {
+        this.character$ = resp;
+      });
   }
 
   ngOnDestroy(): void {
