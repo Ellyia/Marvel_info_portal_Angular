@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
@@ -38,9 +39,10 @@ export class CharactersComponent implements OnDestroy {
   }
 
   showCharacter(id: number): void {
-    this.subs = this.charactersService.getCharacter(id).subscribe(resp => {
-      this.character$ = resp;
-    });
+    this.subs = this.charactersService.getCharacter(id)
+      .subscribe(resp => {
+        this.character$ = resp;
+      });
   }
 
   loadMore(): void {

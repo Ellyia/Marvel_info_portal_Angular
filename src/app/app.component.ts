@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
-import { HeaderComponent } from '@coreComponents/header/header.component';
 import { SpinnerComponent } from '@coreComponents/spinner/spinner.component';
+import { HeaderComponent } from '@core/components/header/header.component';
 
 @Component({
   selector: 'app-root',
