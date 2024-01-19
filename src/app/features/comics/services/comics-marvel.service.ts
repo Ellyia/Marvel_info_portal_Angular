@@ -27,8 +27,7 @@ export class ComicsMarvelService {
     return this.http.get<MarvelApiComicsResponse>(
       `/comics/${id}`
     ).pipe(
-      map(res => res.data.results[0]),
-      map(comic => this.transformComic(comic))
+      map(res => this.transformComic(res.data.results[0]))
     )
   }
 

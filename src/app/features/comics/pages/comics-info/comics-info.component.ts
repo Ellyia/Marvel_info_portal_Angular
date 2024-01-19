@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BannerComponent } from '@coreComponents/banner/banner.component';
+import { BannerComponent } from '@core/components/banner/banner.component';
 import { Subscription } from 'rxjs';
 import { CustomMarvelComic } from '../../models/comics.model';
 import { ComicsMarvelService } from '../../services/comics-marvel.service';
@@ -21,11 +21,13 @@ export class ComicsInfoComponent {
 
   ngOnInit(): void {
     this.id = +(this.route.snapshot.paramMap.get('id') || 0);
-    this.sub = this.comicsService.getComic(this.id).subscribe(
-      res => {
-        this.comics = res;
-      }
-    )
+
+    this.sub = this.comicsService.getComic(this.id)
+      .subscribe(
+        res => {
+          this.comics = res;
+        }
+      )
   }
 
   toComics() {
