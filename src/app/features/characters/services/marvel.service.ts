@@ -33,6 +33,17 @@ export class CharactersMarvelService {
     )
   }
 
+  getCharacterByName(name: string): Observable<CustomMarvelChar> {
+    return this.http.get<MarvelApiCharsResponse>(
+      `/characters?name=${name}`
+    ).pipe(
+      map(res => this.transformCharacter(res.data.results[0])),
+      tap(res => {
+        console.log(res)
+      })
+    )
+  }
+
   transformCharacter(char:MarvelChar): CustomMarvelChar {
     return {
       id: char.id,

@@ -9,11 +9,12 @@ import { CharacterCardComponent } from './components/character-card/character-ca
 import { CharactersMarvelService } from './services/marvel.service';
 import { CharacterInfoComponent } from './components/character-info/character-info.component';
 import { CustomMarvelChar} from './models/characters.model';
+import { FindCharacterFormComponent } from './components/find-character-form/find-character-form.component';
 
 @Component({
   selector: 'app-characters',
   standalone: true,
-  imports: [ NgFor, NgIf, RandomCharacterComponent, CharacterCardComponent, CharacterInfoComponent, InfiniteScrollModule ],
+  imports: [ NgFor, NgIf, RandomCharacterComponent, CharacterCardComponent, CharacterInfoComponent, InfiniteScrollModule, FindCharacterFormComponent ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss'
 })

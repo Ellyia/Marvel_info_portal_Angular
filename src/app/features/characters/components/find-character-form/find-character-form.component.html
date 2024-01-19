@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <p>Or find character by name:</p>
+  <form [formGroup]="charFinder">
+    <input
+      type="text"
+      name="charName"
+      id="charName"
+      placeholder="Enter name"
+      formControlName="charName"
+    >
+    <button (click)="searchCharacter()">FIND</button>
+  </form>
+
+  <!-- <div>{{charFinder.value.charName || null}}</div> -->
+</div>
