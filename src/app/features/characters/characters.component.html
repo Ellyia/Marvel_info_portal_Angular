@@ -21,8 +21,8 @@
 
     <div class="wrapper-aside">
       <app-character-info
-        *ngIf="character$; else pleaseSelect"
-        [character]="character$"
+        *ngIf="character; else pleaseSelect"
+        [character]="character"
       >
       </app-character-info>
 

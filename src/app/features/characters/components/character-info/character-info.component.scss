@@ -11,7 +11,7 @@
     display: flex;
     margin-bottom: 10px;
 
-    .pictureOfCharacter {
+    .picture-of-character {
       width: 50%;
       padding-right: 10px;
 
@@ -22,7 +22,7 @@
       }
     }
 
-    .infoOfCharacter {
+    .info-of-character {
       @include flex(_, column, space-between);
 
       h4 {

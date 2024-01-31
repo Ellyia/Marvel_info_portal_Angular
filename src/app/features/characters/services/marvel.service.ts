@@ -37,22 +37,17 @@ export class CharactersMarvelService {
     return this.http.get<MarvelApiCharsResponse>(
       `/characters?name=${name}`
     ).pipe(
-      map(res => res.data.results[0]),
-      tap(res => {
-        console.log(res)
-      })
+      map(res => res.data.results[0])
     )
   }
 
-  transformCharacter(char:MarvelChar): CustomMarvelChar {
+  transformCharacter(char: MarvelChar): CustomMarvelChar {
     return {
-      id: char.id,
-      name: char.name,
-      description: char.description,
+      ...char,
       thumbnailUrl: `${char.thumbnail.path}.${char.thumbnail.extension}`,
       homepageUrl: char.urls[0].url,
       wikiUrl: char.urls[1].url,
-      comics: char.comics.items
+      comicsItems: char.comics.items
     }
   }
 }

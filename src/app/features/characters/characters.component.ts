@@ -14,7 +14,15 @@ import { FindCharacterFormComponent } from './components/find-character-form/fin
 @Component({
   selector: 'app-characters',
   standalone: true,
-  imports: [ NgFor, NgIf, RandomCharacterComponent, CharacterCardComponent, CharacterInfoComponent, InfiniteScrollModule, FindCharacterFormComponent ],
+  imports: [
+    NgFor,
+    NgIf,
+    RandomCharacterComponent,
+    CharacterCardComponent,
+    CharacterInfoComponent,
+    InfiniteScrollModule,
+    FindCharacterFormComponent
+  ],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss'
 })
@@ -25,7 +33,7 @@ export class CharactersComponent implements OnDestroy {
   charsLimit: number = 9;
   charsOffset: number = 9; // start
 
-  character$: CustomMarvelChar | null = null;
+  character: CustomMarvelChar | null = null;
 
   constructor(private charactersService: CharactersMarvelService){
     this.showCharacters();
@@ -43,7 +51,7 @@ export class CharactersComponent implements OnDestroy {
   showCharacter(id: number): void {
     this.subs = this.charactersService.getCharacter(id)
       .subscribe(resp => {
-        this.character$ = resp;
+        this.character = resp;
       });
   }
 

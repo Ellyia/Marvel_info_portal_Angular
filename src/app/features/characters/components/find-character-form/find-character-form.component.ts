@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CustomMarvelChar, MarvelChar } from '@characters/models/characters.model';
+import { MarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/marvel.service';
 import { Subscription } from 'rxjs';
 
@@ -35,7 +35,10 @@ export class FindCharacterFormComponent implements OnDestroy {
     charName: new FormControl<string | null>('')
   });
 
-  constructor(private charactersService: CharactersMarvelService, private router: Router) {}
+  constructor(
+    private charactersService: CharactersMarvelService,
+    private router: Router
+  ) {}
 
   searchCharacter(): void {
 
