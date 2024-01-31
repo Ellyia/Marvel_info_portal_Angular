@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MarvelChar } from '@characters/models/characters.model';
-import { CharactersMarvelService } from '@characters/services/marvel.service';
+import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { Subscription } from 'rxjs';
 
 enum EMSG {
@@ -27,7 +27,8 @@ export class FindCharacterFormComponent implements OnDestroy {
   }
 
   subs!: Subscription;
-  character$!: MarvelChar;
+
+  character!: MarvelChar;
 
   msg: string = EMSG.clear;
 
@@ -47,7 +48,7 @@ export class FindCharacterFormComponent implements OnDestroy {
       this.subs = this.charactersService.getCharacterByName(this.charFinder.value.charName)
         .subscribe(
           resp => {
-            this.character$ = resp;
+            this.character = resp;
 
             this.msg = resp ? EMSG.found : EMSG.notFound;
             // if(!resp) {

@@ -6,7 +6,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 import { RandomCharacterComponent } from './components/random-character/random-character.component';
 import { CharacterCardComponent } from './components/character-card/character-card.component';
-import { CharactersMarvelService } from './services/marvel.service';
+import { CharactersMarvelService } from './services/characters-marvel.service';
 import { CharacterInfoComponent } from './components/character-info/character-info.component';
 import { CustomMarvelChar} from './models/characters.model';
 import { FindCharacterFormComponent } from './components/find-character-form/find-character-form.component';

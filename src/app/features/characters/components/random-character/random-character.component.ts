@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { CharactersMarvelService } from '@characters/services/marvel.service';
+import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { CustomMarvelChar } from '@characters/models/characters.model';
 
 @Component({
