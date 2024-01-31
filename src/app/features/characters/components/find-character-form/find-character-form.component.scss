@@ -6,7 +6,7 @@
   background-color: #fff;
   box-shadow: 0 0 10px 1px gray;
 
-  p {
+  h5 {
     margin-bottom: 10px;
   }
 
@@ -25,5 +25,21 @@
     &:focus {
       outline: none;
     }
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  .visit {
+    display: flex;
+    p {
+      margin-right: 10%;
+      color: green;
+    }
+  }
+
+  p {
+    color: red;
   }
 }

@@ -1,8 +1,16 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CustomMarvelChar } from '@characters/models/characters.model';
+import { Router } from '@angular/router';
+import { CustomMarvelChar, MarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/marvel.service';
 import { Subscription } from 'rxjs';
+
+enum EMSG {
+  clear = '',
+  emptyInput = 'empty input',
+  notFound = 'not found',
+  found = 'found'
+}
 
 @Component({
   selector: 'find-character-form',
@@ -12,29 +20,58 @@ import { Subscription } from 'rxjs';
   styleUrl: './find-character-form.component.scss'
 })
 export class FindCharacterFormComponent implements OnDestroy {
+  static EMSG = EMSG;
+
+  get enumMessages() {
+    return EMSG;
+  }
+
   subs!: Subscription;
-  character$: CustomMarvelChar | null = null;
+  character$!: MarvelChar;
+
+  msg: string = EMSG.clear;
 
   charFinder = new FormGroup({
     charName: new FormControl<string | null>('')
   });
 
-  constructor(private charactersService: CharactersMarvelService) {}
+  constructor(private charactersService: CharactersMarvelService, private router: Router) {}
 
   searchCharacter(): void {
+
     if (this.charFinder.value.charName) {
 
       this.subs = this.charactersService.getCharacterByName(this.charFinder.value.charName)
         .subscribe(
           resp => {
             this.character$ = resp;
+
+            this.msg = resp ? EMSG.found : EMSG.notFound;
+            // if(!resp) {
+            //   this.msg = EMSG.notFound;
+            // } else {
+            //   this.msg = EMSG.found;
+            // }
           }
         );
+    } else {
+      this.msg = EMSG.emptyInput;
     }
+  }
+
+  clearMsg() {
+    this.msg = EMSG.clear;
+  }
+
+  navigateToCharPage(obj: MarvelChar) {
+    this.router.navigate(['/app-character'], { queryParams: {
+      name: obj.name,
+      description: obj.description,
+      thumbnailUrl: `${obj.thumbnail.path}.${obj.thumbnail.extension}`
+    } });
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
-
 }
