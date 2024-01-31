@@ -1,5 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { environment } from 'environments/environment.prod';
+import { environment } from 'environments/environment';
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const symbol = req.url.indexOf('?') >= 0 ? '&' : '?';
