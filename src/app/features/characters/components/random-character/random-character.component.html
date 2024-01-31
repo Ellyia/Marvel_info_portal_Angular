@@ -2,15 +2,15 @@
 
   <div class="character">
     <div class="pictureOfCharacter">
-      <img src="someUrl" alt="pictureOfCharacter">
+      <img src="{{thumbnail}}" alt="pictureOfCharacter">
     </div>
     <div class="infoOfCharacter">
-      <h4>Character's Name</h4>
-      <p>Info ... </p>
+      <h4>{{char?.name}}</h4>
+      <p>{{char?.description}}</p>
 
       <div class="btns-char">
-        <button class="red">HOMEPAGE</button>
-        <button>WIKI</button>
+        <button class="red"><a target="blank" href={{homepage}}>HOMEPAGE</a></button>
+        <button (click)="redirectToWiki()">WIKI</button>
       </div>
     </div>
   </div>
@@ -23,8 +23,8 @@
 
     <div>
       <p>Or choose another one?</p>
-      <button class="red">TRY IT</button>
-      <img class="bg-decoration" src="../../../../../assets/img/mjolnir.png" alt="mjolnir"/>
+      <button (click)="updateChar()" class="red">TRY IT</button>
+      <img class="bg-decoration" src="assets/img/mjolnir.png" alt="mjolnir"/>
     </div>
   </div>
 

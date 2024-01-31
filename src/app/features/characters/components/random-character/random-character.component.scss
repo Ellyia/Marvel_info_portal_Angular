@@ -1,7 +1,12 @@
-@import '../../../../styles/button.scss';
+@import 'variables';
+@import 'mixines';
 
-$primary-darkcolor: #575454;
-$darkred: #8b0606;
+@mixin random-part($background-color, $color) {
+  width: 50%;
+  background-color: $background-color;
+  color: $color;
+  padding: 2% 3%;
+}
 
 .wrapper {
   display: flex;
@@ -11,35 +16,30 @@ $darkred: #8b0606;
   font-size: 12px;
   min-height: 150px;
 
-  .character { // mixin
-    width: 50%;
-    background-color: #fff;
-    color:#000;
-    padding: 2% 3%;
-
+  .character {
+    @include random-part(#fff, #000);
     display: flex;
 
     .pictureOfCharacter {
       width: 40%;
+      margin-right: 10px;
+
+      img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+      }
     }
 
     .infoOfCharacter {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      @include flex(_, column,space-between);
       width: 100%;
     }
   }
 
-  .random { // mixin
-    width: 50%;
-    background-color: rgb(48, 38, 38);
-    color: #fff;
-    padding: 2% 3%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .random {
+    @include random-part(rgb(48, 38, 38), #fff);
+    @include flex(_, column,space-between);
 
     .bg-decoration {
       width: 100px;
@@ -50,7 +50,7 @@ $darkred: #8b0606;
   }
 
   button {
-    @include btn(#fff, $primary-darkcolor);
+    @include btn(#fff, $primary-dark);
 
     &:first-child {
       margin-right: 10px;
@@ -58,6 +58,6 @@ $darkred: #8b0606;
   }
 
   button.red {
-    @include btn(#fff, darkred);
+    @include btn(#fff, $darkred);
   }
 }

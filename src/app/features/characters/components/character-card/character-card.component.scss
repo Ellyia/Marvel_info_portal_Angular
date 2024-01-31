@@ -1,3 +1,5 @@
+@import 'mixines';
+
 .wrapper {
   background-color: rgb(48, 38, 38);
   cursor: pointer;
@@ -20,11 +22,9 @@
     transition: 0.3s transform;
   }
 
-  .nameOfCharacter {
+  .name-of-character {
+    @include flex(_, center, center);
     height: 50px;
     color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

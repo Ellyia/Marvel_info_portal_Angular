@@ -1,12 +1,13 @@
+@import 'mixines';
+
 header {
+  @include flex(center, _, space-between);
+
   background-color: #fff;
   box-shadow: 0 5px 10px -5px gray;
   height: 65px;
   padding: 0 4%;
   color: rgb(36, 34, 34);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 20px;
 
   p {
