@@ -21,7 +21,7 @@
     @include random-part(#fff, #000);
     display: flex;
 
-    .pictureOfCharacter {
+    .picture-of-character {
       width: 40%;
       margin-right: 20px;
 
@@ -32,7 +32,7 @@
       }
     }
 
-    .infoOfCharacter {
+    .info-of-character {
       @include flex(_, column, _);
 
       h4 {
