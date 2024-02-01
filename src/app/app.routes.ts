@@ -4,8 +4,12 @@ import { CharacterComponent } from '@characters/pages/character/character.compon
 import { PageNotFoundComponent } from '@core/components/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'app-characters' },
-  { path: 'app-characters', component: CharactersComponent },
-  { path: 'app-character', component: CharacterComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'characters' },
+  { path: 'characters',
+        children: [
+          { path: 'all', component: CharactersComponent },
+          { path: ':id', component: CharacterComponent }
+        ],
+  },
   { path: '**', component: PageNotFoundComponent }
 ];

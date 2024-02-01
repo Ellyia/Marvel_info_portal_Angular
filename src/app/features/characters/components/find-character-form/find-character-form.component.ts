@@ -51,11 +51,6 @@ export class FindCharacterFormComponent implements OnDestroy {
             this.character = resp;
 
             this.msg = resp ? EMSG.found : EMSG.notFound;
-            // if(!resp) {
-            //   this.msg = EMSG.notFound;
-            // } else {
-            //   this.msg = EMSG.found;
-            // }
           }
         );
     } else {
@@ -68,11 +63,7 @@ export class FindCharacterFormComponent implements OnDestroy {
   }
 
   navigateToCharPage(obj: MarvelChar) {
-    this.router.navigate(['/app-character'], { queryParams: {
-      name: obj.name,
-      description: obj.description,
-      thumbnailUrl: `${obj.thumbnail.path}.${obj.thumbnail.extension}`
-    } });
+    this.router.navigate([`/characters/${obj.id}`]);
   }
 
   ngOnDestroy(): void {

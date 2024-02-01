@@ -12,7 +12,7 @@ import { CustomMarvelChar} from './models/characters.model';
 import { FindCharacterFormComponent } from './components/find-character-form/find-character-form.component';
 
 @Component({
-  selector: 'app-characters',
+  selector: 'characters',
   standalone: true,
   imports: [
     NgFor,

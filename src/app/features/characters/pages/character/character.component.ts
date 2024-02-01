@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomMarvelChar } from '@characters/models/characters.model';
+import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-character',
+  selector: 'character',
   standalone: true,
   imports: [],
   templateUrl: './character.component.html',
@@ -11,16 +13,21 @@ import { CustomMarvelChar } from '@characters/models/characters.model';
 })
 export class CharacterComponent {
 
-  // data!: CustomMarvelChar;
-  name: string = '';
-  img: string = '';
-  description: string = '';
+  character!: CustomMarvelChar;
+  id!: number;
+  subs!: Subscription;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private charactersService: CharactersMarvelService) {}
 
   ngOnInit() {
-    this.name = this.route.snapshot.queryParams['name'];
-    this.description = this.route.snapshot.queryParams['description'];
-    this.img = this.route.snapshot.queryParams['thumbnailUrl'];
+    this.id = +(this.route.snapshot.paramMap.get('id') || 0);
+
+    this.subs = this.charactersService.getCharacter(this.id).subscribe(
+      res => {
+        this.character = res;
+      }
+    )
   }
 }
