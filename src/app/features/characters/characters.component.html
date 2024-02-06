@@ -11,7 +11,7 @@
       (scrolled)="loadMore()"
       >
         <app-character-card
-          *ngFor="let char of list$"
+          *ngFor="let char of charactersList$ | async"
           [char]="char"
           (onCardClick)="showCharacter($event)"
         >

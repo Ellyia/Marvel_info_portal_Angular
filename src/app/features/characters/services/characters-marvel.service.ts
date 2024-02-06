@@ -11,7 +11,7 @@ export class CharactersMarvelService {
 
   constructor(private http: HttpClient, private spinnerService: SpinnerService) {}
 
-  getCharacters(charsLimit: number, charsOffset: number): Observable<CustomMarvelChar[]> {
+  getCharacters(charsOffset: number, charsLimit: number): Observable<CustomMarvelChar[]> {
     this.spinnerService.setLoader(true); // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
@@ -29,7 +29,10 @@ export class CharactersMarvelService {
       `/characters/${id}`
     ).pipe(
       map(res => this.transformCharacter(res.data.results[0])),
-      tap(() => this.spinnerService.setLoader(false))
+      tap((res) => {
+        this.spinnerService.setLoader(false);
+        // console.log('id', res)
+      })
     )
   }
 
@@ -37,7 +40,8 @@ export class CharactersMarvelService {
     return this.http.get<MarvelApiCharsResponse>(
       `/characters?name=${name}`
     ).pipe(
-      map(res => res.data.results[0])
+      map(res => res.data.results[0]),
+      // tap(res => console.log('name', res))
     )
   }
 
