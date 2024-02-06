@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+
 import { Component, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
@@ -15,8 +15,6 @@ import { FindCharacterFormComponent } from './components/find-character-form/fin
   selector: 'characters',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
     RandomCharacterComponent,
     CharacterCardComponent,
     CharacterInfoComponent,
@@ -27,7 +25,7 @@ import { FindCharacterFormComponent } from './components/find-character-form/fin
   styleUrl: './characters.component.scss'
 })
 export class CharactersComponent implements OnDestroy {
-  list$: CustomMarvelChar[] = [];
+  list: CustomMarvelChar[] = [];
   subs!: Subscription;
 
   charsLimit: number = 9;
@@ -41,9 +39,8 @@ export class CharactersComponent implements OnDestroy {
 
   showCharacters(): void {
     this.subs = this.charactersService.getCharacters(this.charsLimit, this.charsOffset)
-      .subscribe(
-        resp => {
-          this.list$ = [...this.list$, ...resp];
+      .subscribe(resp => {
+          this.list = [...this.list, ...resp];
         }
       );
   }

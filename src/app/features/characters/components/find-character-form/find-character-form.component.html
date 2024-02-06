@@ -20,18 +20,5 @@
       </div>}
     @case (enumMessages.emptyInput) {<p>Tis field is required</p>}
     @case (enumMessages.notFound) {<p>The character wasn't found. Check the name and try again.</p>}
-    @default {}
   }
-
-  <!-- @if (character) {
-    <div class="visit">
-      <p>I've found {{character.name}} page. You can visit it... =></p>
-      <button (click)="navigateToCharPage(character)">{{character.name}} page</button>
-    </div>
-  } @else if (msg === EMSG.emptyInput) {
-    <p>Tis field is required</p>
-  } @else if (msg === EMSG.notFound) {
-    <p>The character wasn't found. Check the name and try again.</p>
-  } -->
-
 </div>
