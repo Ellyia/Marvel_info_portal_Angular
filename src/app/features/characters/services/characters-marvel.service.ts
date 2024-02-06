@@ -9,27 +9,30 @@ import { SpinnerService } from '@core/services/spinner.service';
 })
 export class CharactersMarvelService {
 
-  constructor(private http: HttpClient, private spinnerService: SpinnerService) {}
+  constructor(
+    private http: HttpClient,
+    private spinnerService: SpinnerService
+  ) {}
 
   getCharacters(charsLimit: number, charsOffset: number): Observable<CustomMarvelChar[]> {
-    this.spinnerService.setLoader(true); // to interseptor
+    this.spinnerService.loading = true; // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
       `/characters?limit=${charsLimit}&offset=${charsOffset}`
     ).pipe(
       map(res => res.data.results.map(char => this.transformCharacter(char))),
-      tap(() => this.spinnerService.setLoader(false))
+      tap(() => this.spinnerService.loading = false)
     )
   }
 
   getCharacter(id: number): Observable<CustomMarvelChar> {
-    this.spinnerService.setLoader(true); // to interseptor
+    this.spinnerService.loading = true; // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
       `/characters/${id}`
     ).pipe(
       map(res => this.transformCharacter(res.data.results[0])),
-      tap(() => this.spinnerService.setLoader(false))
+      tap(() => this.spinnerService.loading = false)
     )
   }
 
