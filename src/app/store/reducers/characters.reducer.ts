@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { LoadCharsList, GetCharSuccess, ResetCharsList, LoadCharsListSuccess } from '../actions/characters.actions';
+import { GetCharSuccess, ResetCharsList, LoadCharsListSuccess } from '../actions/characters.actions';
 import { initialCharactersState } from '../state/characters.state';
 
 export const charactersReducer = createReducer(

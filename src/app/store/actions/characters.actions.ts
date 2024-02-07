@@ -1,16 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { CustomMarvelChar } from '@characters/models/characters.model';
-
-export enum ECharactersActions {
-  LoadCharsList = '[CharactersList] Load Characters',
-  CharsListLoadedSuccess = '[CharactersList] Load Characters Success',
-  CharsListLoadedFailure = '[CharactersList] Load Characters Failure',
-  ResetCharsList = '[CharactersList] Reset Characters',
-  LoadCharacter = '[Characters] Load Character',
-  CharLoadedSuccess = '[Characters] Load Character Success',
-  CharLoadedFailure = '[Characters] Load Character Failure',
-}
+import { ECharactersActions } from './actionTypes';
 
 export const LoadCharsList = createAction(
   ECharactersActions.LoadCharsList,

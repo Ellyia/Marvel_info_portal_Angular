@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { switchMap, map, mergeMap, tap, exhaustMap, catchError } from 'rxjs/operators';
+import { switchMap, map, tap, catchError } from 'rxjs/operators';
 
-import { CharsListLoadedFailure, ECharactersActions, LoadCharsListSuccess } from '../actions/characters.actions';
+import { CharsListLoadedFailure, LoadCharsListSuccess } from '../actions/characters.actions';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { of } from 'rxjs/internal/observable/of';
+import { ECharactersActions } from '../actions/actionTypes';
 
 @Injectable()
 export class CharactersEffects {
@@ -16,7 +17,7 @@ export class CharactersEffects {
           map(chars => LoadCharsListSuccess({characters: chars})),
           tap(chars => console.log(chars)),
           catchError(((error: { message: string }) => {
-           return of(CharsListLoadedFailure({ errMsg: error.message }))
+           return of(CharsListLoadedFailure({ errMsg: error.message }));
           }))
         )
       )
