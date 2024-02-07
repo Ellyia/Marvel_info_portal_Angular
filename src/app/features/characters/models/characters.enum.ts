@@ -1,4 +1,4 @@
-export enum CharacterSearchStatus {
+export enum CharacterSearchStatusEnum {
   ClearMsg,
   EmptyInput,
   NotFound,

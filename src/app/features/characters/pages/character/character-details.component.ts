@@ -5,11 +5,11 @@ import { CharactersMarvelService } from '@characters/services/characters-marvel.
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'character',
+  selector: 'character-details',
   standalone: true,
   imports: [],
-  templateUrl: './character.component.html',
-  styleUrl: './character.component.scss'
+  templateUrl: './character-details.component.html',
+  styleUrl: './character-details.component.scss'
 })
 export class CharacterDetailsComponent {
 

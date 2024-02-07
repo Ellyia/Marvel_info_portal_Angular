@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { Subscription } from 'rxjs';
-import { CharacterSearchStatus } from '@characters/models/characters.enum';
+import { CharacterSearchStatusEnum } from '@characters/models/characters.enum';
 @Component({
   selector: 'find-character-form',
   standalone: true,
@@ -13,19 +13,19 @@ import { CharacterSearchStatus } from '@characters/models/characters.enum';
   styleUrl: './find-character-form.component.scss'
 })
 export class FindCharacterFormComponent implements OnDestroy {
-  static CharacterSearchStatus = CharacterSearchStatus;
+  static CharacterSearchStatusEnum = CharacterSearchStatusEnum;
 
   get charSearchStatus() {
-    return CharacterSearchStatus;
+    return CharacterSearchStatusEnum;
   }
 
   subs!: Subscription;
 
   character!: MarvelChar;
 
-  searchStatus: CharacterSearchStatus = CharacterSearchStatus.ClearMsg;
+  searchStatus: CharacterSearchStatusEnum = CharacterSearchStatusEnum.ClearMsg;
 
-  charFinder = new FormGroup({
+  charFinderForm = new FormGroup({
     charName: new FormControl<string | null>('')
   });
 
@@ -36,21 +36,21 @@ export class FindCharacterFormComponent implements OnDestroy {
 
   onSearchCharacter(): void {
 
-    if (this.charFinder.value.charName) {
+    if (this.charFinderForm.value.charName) {
 
-      this.subs = this.charactersService.getCharacterByName(this.charFinder.value.charName)
+      this.subs = this.charactersService.getCharacterByName(this.charFinderForm.value.charName)
         .subscribe(resp => {
           this.character = resp;
 
-          this.searchStatus = resp ? CharacterSearchStatus.Found : CharacterSearchStatus.NotFound;
+          this.searchStatus = resp ? CharacterSearchStatusEnum.Found : CharacterSearchStatusEnum.NotFound;
         });
     } else {
-      this.searchStatus = CharacterSearchStatus.EmptyInput;
+      this.searchStatus = CharacterSearchStatusEnum.EmptyInput;
     }
   }
 
   clearSearchMsg() {
-    this.searchStatus = CharacterSearchStatus.ClearMsg;
+    this.searchStatus = CharacterSearchStatusEnum.ClearMsg;
   }
 
   navigateToCharPage(obj: MarvelChar) {
