@@ -7,18 +7,19 @@
       id="charName"
       placeholder="Enter name"
       formControlName="charName"
-      (input)="clearMsg()"
+      (input)="clearSearchMsg()"
     >
-    <button (click)="searchCharacter()">FIND</button>
+    <button (click)="onSearchCharacter()">FIND</button>
   </form>
 
-  @switch (msg) {
-    @case (enumMessages.found) {
+  @switch (searchStatus) {
+    @case (charSearchStatus.Found) {
       <div class="visit">
         <p>I've found {{character.name}} page. You can visit it... =></p>
         <button (click)="navigateToCharPage(character)">{{character.name}} page</button>
-      </div>}
-    @case (enumMessages.emptyInput) {<p>Tis field is required</p>}
-    @case (enumMessages.notFound) {<p>The character wasn't found. Check the name and try again.</p>}
+      </div>
+    }
+    @case (charSearchStatus.EmptyInput) { <p>This field is required</p> }
+    @case (charSearchStatus.NotFound) { <p>The character wasn't found. Check the name and try again.</p> }
   }
 </div>

@@ -15,24 +15,24 @@ export class CharactersMarvelService {
   ) {}
 
   getCharacters(charsLimit: number, charsOffset: number): Observable<CustomMarvelChar[]> {
-    this.spinnerService.loading = true; // to interseptor
+    this.spinnerService.startLoading(); // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
       `/characters?limit=${charsLimit}&offset=${charsOffset}`
     ).pipe(
       map(res => res.data.results.map(char => this.transformCharacter(char))),
-      tap(() => this.spinnerService.loading = false)
+      tap(() => this.spinnerService.stopLoading())
     )
   }
 
   getCharacter(id: number): Observable<CustomMarvelChar> {
-    this.spinnerService.loading = true; // to interseptor
+    this.spinnerService.startLoading(); // to interseptor
 
     return this.http.get<MarvelApiCharsResponse>(
       `/characters/${id}`
     ).pipe(
       map(res => this.transformCharacter(res.data.results[0])),
-      tap(() => this.spinnerService.loading = false)
+      tap(() => this.spinnerService.stopLoading())
     )
   }
 

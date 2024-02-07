@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './character.component.html',
   styleUrl: './character.component.scss'
 })
-export class CharacterComponent {
+export class CharacterDetailsComponent {
 
   character!: CustomMarvelChar;
   id!: number;
@@ -24,10 +24,9 @@ export class CharacterComponent {
   ngOnInit() {
     this.id = +(this.route.snapshot.paramMap.get('id') || 0);
 
-    this.subs = this.charactersService.getCharacter(this.id).subscribe(
-      res => {
+    this.subs = this.charactersService.getCharacter(this.id)
+      .subscribe(res => {
         this.character = res;
-      }
-    )
+      });
   }
 }

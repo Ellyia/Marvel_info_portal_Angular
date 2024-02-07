@@ -4,14 +4,7 @@ import { Router } from '@angular/router';
 import { MarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { Subscription } from 'rxjs';
-
-enum EMSG {
-  clear = '',
-  emptyInput = 'empty input',
-  notFound = 'not found',
-  found = 'found'
-}
-
+import { CharacterSearchStatus } from '@characters/models/characters.enum';
 @Component({
   selector: 'find-character-form',
   standalone: true,
@@ -20,17 +13,17 @@ enum EMSG {
   styleUrl: './find-character-form.component.scss'
 })
 export class FindCharacterFormComponent implements OnDestroy {
-  static EMSG = EMSG;
+  static CharacterSearchStatus = CharacterSearchStatus;
 
-  get enumMessages() {
-    return EMSG;
+  get charSearchStatus() {
+    return CharacterSearchStatus;
   }
 
   subs!: Subscription;
 
   character!: MarvelChar;
 
-  msg: string = EMSG.clear;
+  searchStatus: CharacterSearchStatus = CharacterSearchStatus.ClearMsg;
 
   charFinder = new FormGroup({
     charName: new FormControl<string | null>('')
@@ -41,25 +34,23 @@ export class FindCharacterFormComponent implements OnDestroy {
     private router: Router
   ) {}
 
-  searchCharacter(): void {
+  onSearchCharacter(): void {
 
     if (this.charFinder.value.charName) {
 
       this.subs = this.charactersService.getCharacterByName(this.charFinder.value.charName)
-        .subscribe(
-          resp => {
-            this.character = resp;
+        .subscribe(resp => {
+          this.character = resp;
 
-            this.msg = resp ? EMSG.found : EMSG.notFound;
-          }
-        );
+          this.searchStatus = resp ? CharacterSearchStatus.Found : CharacterSearchStatus.NotFound;
+        });
     } else {
-      this.msg = EMSG.emptyInput;
+      this.searchStatus = CharacterSearchStatus.EmptyInput;
     }
   }
 
-  clearMsg() {
-    this.msg = EMSG.clear;
+  clearSearchMsg() {
+    this.searchStatus = CharacterSearchStatus.ClearMsg;
   }
 
   navigateToCharPage(obj: MarvelChar) {
