@@ -13,13 +13,13 @@
   </form>
 
   @switch (searchStatus) {
-    @case (charSearchStatus.Found) {
+    @case (characterSearchStatusEnum.Found) {
       <div class="visit">
         <p>I've found {{character.name}} page. You can visit it... =></p>
         <button (click)="navigateToCharPage(character)">{{character.name}} page</button>
       </div>
     }
-    @case (charSearchStatus.EmptyInput) { <p>This field is required</p> }
-    @case (charSearchStatus.NotFound) { <p>The character wasn't found. Check the name and try again.</p> }
+    @case (characterSearchStatusEnum.EmptyInput) { <p>This field is required</p> }
+    @case (characterSearchStatusEnum.NotFound) { <p>The character wasn't found. Check the name and try again.</p> }
   }
 </div>

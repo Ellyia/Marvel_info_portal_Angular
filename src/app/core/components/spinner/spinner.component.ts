@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { SpinnerService } from '@core/services/spinner.service';
 
@@ -11,4 +10,8 @@ import { SpinnerService } from '@core/services/spinner.service';
 })
 export class SpinnerComponent {
   constructor(public spinnerService: SpinnerService) {}
+
+  get isLoading(): boolean {
+    return this.spinnerService.loading;
+  }
 }

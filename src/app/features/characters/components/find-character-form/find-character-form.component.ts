@@ -13,11 +13,7 @@ import { CharacterSearchStatusEnum } from '@characters/models/characters.enum';
   styleUrl: './find-character-form.component.scss'
 })
 export class FindCharacterFormComponent implements OnDestroy {
-  static CharacterSearchStatusEnum = CharacterSearchStatusEnum;
-
-  get charSearchStatus() {
-    return CharacterSearchStatusEnum;
-  }
+  characterSearchStatusEnum = CharacterSearchStatusEnum;
 
   subs!: Subscription;
 
@@ -35,7 +31,6 @@ export class FindCharacterFormComponent implements OnDestroy {
   ) {}
 
   onSearchCharacter(): void {
-
     if (this.charFinderForm.value.charName) {
 
       this.subs = this.charactersService.getCharacterByName(this.charFinderForm.value.charName)
