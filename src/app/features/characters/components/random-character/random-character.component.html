@@ -1,15 +1,15 @@
 <div class="wrapper">
 
   <div class="character">
-    <div class="pictureOfCharacter">
-      <img src="{{thumbnail}}" alt="pictureOfCharacter">
+    <div class="picture-of-character">
+      <img src="{{char?.thumbnailUrl}}" alt="picture of character">
     </div>
-    <div class="infoOfCharacter">
+    <div class="info-of-character">
       <h4>{{char?.name}}</h4>
       <p>{{char?.description}}</p>
 
       <div class="btns-char">
-        <button class="red"><a target="blank" href={{homepage}}>HOMEPAGE</a></button>
+        <button class="red"><a target="blank" href={{char?.homepageUrl}}>HOMEPAGE</a></button>
         <button (click)="redirectToWiki()">WIKI</button>
       </div>
     </div>

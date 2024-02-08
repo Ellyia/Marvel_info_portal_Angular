@@ -49,3 +49,10 @@ export interface Collection {
   items: Comic[];
   returned: number;
 }
+
+export interface CustomMarvelChar extends MarvelChar {
+  thumbnailUrl: string,
+  homepageUrl: string,
+  wikiUrl: string,
+  comicsItems: Comic[]
+}

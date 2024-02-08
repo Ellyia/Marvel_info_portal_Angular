@@ -5,12 +5,13 @@
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px 1px gray;
+  margin-bottom: 20px;
 
   .character {
     display: flex;
     margin-bottom: 10px;
 
-    .pictureOfCharacter {
+    .picture-of-character {
       width: 50%;
       padding-right: 10px;
 
@@ -21,7 +22,7 @@
       }
     }
 
-    .infoOfCharacter {
+    .info-of-character {
       @include flex(_, column, space-between);
 
       h4 {
@@ -45,9 +46,12 @@
 
   }
 
+  h5, p {
+    margin-bottom: 10px;
+  }
+
   p {
     text-indent: 10px;
-    margin-bottom: 10px;
   }
 
   ul span {
