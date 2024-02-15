@@ -31,7 +31,6 @@ export class CharactersMarvelService {
       map(res => this.transformCharacter(res.data.results[0])),
       tap((res) => {
         this.spinnerService.setLoader(false);
-        // console.log('id', res)
       })
     )
   }
@@ -40,8 +39,7 @@ export class CharactersMarvelService {
     return this.http.get<MarvelApiCharsResponse>(
       `/characters?name=${name}`
     ).pipe(
-      map(res => res.data.results[0]),
-      // tap(res => console.log('name', res))
+      map(res => res.data.results[0])
     )
   }
 

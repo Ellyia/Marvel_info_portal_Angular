@@ -3,6 +3,15 @@ import { createAction, props } from '@ngrx/store';
 import { CustomMarvelChar } from '@characters/models/characters.model';
 import { ECharactersActions } from './actionTypes';
 
+export interface GetCharactersRequestInterface {
+  start: number
+  count: number
+}
+
+export interface BackendErrorsInterface {
+  message: string
+}
+
 export const LoadCharsList = createAction(
   ECharactersActions.LoadCharsList,
   props<{ start: number; count: number }>()
@@ -15,7 +24,11 @@ export const LoadCharsListSuccess = createAction(
 
 export const CharsListLoadedFailure = createAction(
   ECharactersActions.CharsListLoadedFailure,
-  props<{ errMsg: string}>()
+  props<{ errors: BackendErrorsInterface}>()
+);
+
+export const ResetCharsList = createAction(
+  ECharactersActions.ResetCharsList
 );
 
 export const LoadCharacter = createAction(
@@ -24,11 +37,7 @@ export const LoadCharacter = createAction(
   // props<{ name: string }>()
 )
 
-export const GetCharSuccess = createAction(
+export const LoadCharSuccess = createAction(
   ECharactersActions.CharLoadedSuccess,
   props<{ character: CustomMarvelChar }>()
-);
-
-export const ResetCharsList = createAction(
-  ECharactersActions.ResetCharsList
 );

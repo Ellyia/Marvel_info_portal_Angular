@@ -10,6 +10,11 @@ export const selectCharactersList = createSelector(
   (state: ICharactersState) => state.charactersList
 );
 
+export const selectRequestErrors = createSelector(
+  selectCharacters,
+  (state: ICharactersState) => state.requestErrors
+);
+
 export const selectCharacter = createSelector(
   selectCharacters,
   (state: ICharactersState) => state.character
