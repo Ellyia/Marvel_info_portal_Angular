@@ -5,33 +5,34 @@
   <div class="wrapper-all-chars">
     <div>
       <div class="wrapper-characters"
-      infiniteScroll
-      [infiniteScrollDistance]="0"
-      [infiniteScrollThrottle]="2000"
-      (scrolled)="loadMore()"
+        infiniteScroll
+        [infiniteScrollDistance]="0"
+        [infiniteScrollThrottle]="2000"
+        (scrolled)="loadMore()"
       >
+
+      @for (char of list; track char.id) {
         <app-character-card
-          *ngFor="let char of list$"
           [char]="char"
           (onCardClick)="showCharacter($event)"
         >
         </app-character-card>
+      }
       </div>
-      <!-- <button *ngIf="list$.length > 0" (click)="loadMore()">Load more ...</button> -->
     </div>
 
     <div class="wrapper-aside">
-      <app-character-info
-        *ngIf="character$; else pleaseSelect"
-        [character]="character$"
-      >
-      </app-character-info>
-
-      <ng-template #pleaseSelect>
+      @if (character) {
+        <app-character-info [character]="character">
+        </app-character-info>
+      } @else {
         <p class="visible-wrap">
           Please, select a character to see information
         </p>
-      </ng-template>
+      }
+
+      <find-character-form></find-character-form>
+
       <img class="bg-decoration" src="assets/img/vision.png" alt="vision"/>
     </div>
   </div>

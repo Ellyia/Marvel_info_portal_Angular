@@ -1,3 +1,5 @@
-<div *ngIf="this.spinnerService.getLoader()" class="cssload-container">
-  <div class="cssload-wheel"></div>
-</div>
+@if (isLoading) {
+  <div class="cssload-container">
+    <div class="cssload-wheel"></div>
+  </div>
+}

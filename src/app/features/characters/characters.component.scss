@@ -36,10 +36,11 @@
       flex-direction: column;
       justify-content: space-between;
 
-      .visible-wrap {
+      .visible-wrap { // mixine
         padding: 20px;
         background-color: #fff;
         box-shadow: 0 0 10px 1px gray;
+        margin-bottom: 20px;
       }
     }
   }

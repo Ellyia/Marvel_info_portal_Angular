@@ -1,0 +1,45 @@
+@import 'variables';
+@import 'mixines';
+
+.wrapper { // mixin
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 1px gray;
+
+  h5 {
+    margin-bottom: 10px;
+  }
+
+  button {
+    @include btn(#fff, $darkred);
+    width: 20%;
+  }
+
+  input {
+    border: none;
+    box-shadow: 0 2px 5px 0px gray;
+    margin-right: 10%;
+    padding: 3px 10px;
+    width: 70%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+
+  .visit {
+    display: flex;
+    p {
+      margin-right: 10%;
+      color: green;
+    }
+  }
+
+  p {
+    color: red;
+  }
+}

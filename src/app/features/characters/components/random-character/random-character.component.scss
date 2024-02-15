@@ -20,8 +20,8 @@
     @include random-part(#fff, #000);
     display: flex;
 
-    .pictureOfCharacter {
-      width: 50%;
+    .picture-of-character {
+      width: 40%;
       margin-right: 20px;
 
       img {
@@ -31,7 +31,7 @@
       }
     }
 
-    .infoOfCharacter {
+    .info-of-character {
       @include flex(_, column,space-between);
       width: 100%;
 

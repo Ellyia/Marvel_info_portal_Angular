@@ -1,9 +1,9 @@
 <div class="wrapper">
   <div class="character">
-    <div class="pictureOfCharacter">
-      <img src="{{character?.thumbnailUrl}}" alt="pictureOfCharacter">
+    <div class="picture-of-character">
+      <img src="{{character?.thumbnailUrl}}" alt="picture of character">
     </div>
-    <div class="infoOfCharacter">
+    <div class="info-of-character">
       <h4>{{character?.name}}</h4>
 
       <div class="btns-char">
@@ -15,7 +15,10 @@
 
   <p>{{character?.description}}</p>
 
-  <ul> <span>COMICS:</span>
-    <li *ngFor="let comic of character?.comics">{{comic?.name}}</li>
+  <ul>
+    <h5>Comics:</h5>
+    @for (comic of character?.comicsItems; track comic.name) {
+      <li>{{comic?.name}}</li>
+    }
   </ul>
 </div>

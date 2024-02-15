@@ -4,15 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SpinnerService {
-  private loading: boolean = false;
+  private isLoading: boolean = false;
 
   constructor() { }
 
-  setLoader(loading: boolean) {
-    this.loading = loading;
+  startLoading(): void {
+    this.isLoading = true;
   }
 
-  getLoader(): boolean {
-    return this.loading;
+  stopLoading(): void {
+    this.isLoading = false;
+  }
+
+  get loading(): boolean {
+    return this.isLoading;
   }
 }
