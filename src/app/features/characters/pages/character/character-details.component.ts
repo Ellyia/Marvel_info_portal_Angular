@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomMarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
+import { BannerComponent } from '@core/components/banner/banner.component';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'character-details',
   standalone: true,
-  imports: [],
+  imports: [BannerComponent],
   templateUrl: './character-details.component.html',
   styleUrl: './character-details.component.scss'
 })

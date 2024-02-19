@@ -9,17 +9,20 @@ import { CustomMarvelComic, MarvelApiComicsResponse, MarvelComic } from '../mode
 })
 export class ComicsMarvelService {
 
-  constructor(private http: HttpClient, private spinnerService: SpinnerService) { }
+  constructor(
+    private http: HttpClient,
+    private spinnerService: SpinnerService
+  ) {}
 
   getComics(comicsLimit: number, comicsOffset: number): Observable<CustomMarvelComic[]> {
 
-    this.spinnerService.setLoader(true); // to interseptor
+    this.spinnerService.startLoading(); // to interseptor
 
     return this.http.get<MarvelApiComicsResponse>(
       `/comics?limit=${comicsLimit}&offset=${comicsOffset}`
     ).pipe(
       map(res => res.data.results.map(comic => this.transformComic(comic))),
-      tap(() => this.spinnerService.setLoader(false))
+      tap(() => this.spinnerService.stopLoading())
     )
   }
 

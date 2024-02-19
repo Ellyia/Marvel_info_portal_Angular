@@ -3,13 +3,16 @@
   <app-banner></app-banner>
 
   <div class="wrapper-comics">
-    <app-comic-card
-      *ngFor="let comic of comicsList$"
-      [comic]="comic"
-      (onCardClick)="showComic($event)"
-    >
-    </app-comic-card>
+    @for (comic of comicsList; track comic.id) {
+      <app-comic-card
+        [comic]="comic"
+        (onCardClick)="showComic($event)"
+      >
+      </app-comic-card>
+    }
   </div>
 
-  <button *ngIf="comicsList$.length > 0" (click)="loadMore()">Load more ...</button>
+  @if (amountOfReceivedComics > 0) {
+    <button (click)="loadMore()">Load more ...</button>
+  }
 </div>

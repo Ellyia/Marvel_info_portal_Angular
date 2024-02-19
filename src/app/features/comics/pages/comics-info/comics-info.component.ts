@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BannerComponent } from '@core/components/banner/banner.component';
-import { Subscription } from 'rxjs';
-import { CustomMarvelComic } from '../../models/comics.model';
-import { ComicsMarvelService } from '../../services/comics-marvel.service';
+import { CustomMarvelComic } from '@comics/models/comics.model';
+import { ComicsMarvelService } from '@comics/services/comics-marvel.service';
 
 @Component({
   selector: 'app-comics-info',
@@ -14,23 +13,24 @@ import { ComicsMarvelService } from '../../services/comics-marvel.service';
 })
 export class ComicsInfoComponent {
   id!: number;
-  sub!: Subscription;
   comics!: CustomMarvelComic;
 
-  constructor(private route: ActivatedRoute, private comicsService: ComicsMarvelService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private comicsService: ComicsMarvelService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.id = +(this.route.snapshot.paramMap.get('id') || 0);
 
-    this.sub = this.comicsService.getComic(this.id)
-      .subscribe(
-        res => {
+    this.comicsService.getComic(this.id)
+      .subscribe(res => {
           this.comics = res;
-        }
-      )
+      })
   }
 
-  toComics() {
-    this.router.navigate(['comics/all']);
+  toComics(): void {
+    this.router.navigate(['comics']);
   }
 }

@@ -11,13 +11,13 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'characters' },
   { path: 'characters',
       children: [
-        { path: 'all', component: CharactersComponent },
+        { path: '', component: CharactersComponent },
         { path: ':id', component: CharacterDetailsComponent }
       ],
   },
   { path: 'comics',
       children: [
-        {path: 'all', component: ComicsComponent},
+        {path: '', component: ComicsComponent},
         {path: ':id', component: ComicsInfoComponent},
       ],
   },

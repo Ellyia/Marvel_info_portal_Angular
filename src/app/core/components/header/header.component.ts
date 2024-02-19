@@ -12,15 +12,15 @@ export class HeaderComponent {
 
   constructor(private router: Router) {}
 
-  toCharacters() {
-    this.router.navigate(['characters']);
+  toCharacters(): void {
+    this.router.navigate(['characters']); // active red
   }
 
-  toComics() {
-    this.router.navigate(['comics/all']);
+  toComics(): void {
+    this.router.navigate(['comics']);
   }
 
-  toUs() {
-    // this.router.navigate(['/courses/new']);
+  toUs(): void {
+    // this.router.navigate(['/weAre']);
   }
 }
