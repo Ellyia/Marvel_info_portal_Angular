@@ -17,6 +17,8 @@
 
   <ul>
     <h5>Comics:</h5>
-    <li *ngFor="let comic of character?.comicsItems">{{comic?.name}}</li>
+    @for (comic of character?.comicsItems; track comic.name) {
+      <li>{{comic?.name}}</li>
+    }
   </ul>
 </div>

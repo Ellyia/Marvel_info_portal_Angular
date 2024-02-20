@@ -1,5 +1,4 @@
-import { NgFor, NgIf, AsyncPipe } from '@angular/common';
-import { Component, inject, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
@@ -20,9 +19,6 @@ import { selectCharactersList } from 'app/store/selectors/characters.selectors';
   selector: 'characters',
   standalone: true,
   imports: [
-    NgFor,
-    NgIf,
-    AsyncPipe,
     RandomCharacterComponent,
     CharacterCardComponent,
     CharacterInfoComponent,
@@ -33,11 +29,13 @@ import { selectCharactersList } from 'app/store/selectors/characters.selectors';
   styleUrl: './characters.component.scss'
 })
 export class CharactersComponent implements OnDestroy {
+
   charactersList$: Observable<CustomMarvelChar[]> = this.store.select(selectCharactersList);
   // list: CustomMarvelChar[] | [] = [];
   subs!: Subscription;
 
   charsLimit: number = 9; // 109 = err 409
+
   charsOffset: number = 0; // start
 
   character: CustomMarvelChar | null = null;
@@ -54,7 +52,7 @@ export class CharactersComponent implements OnDestroy {
     // this.subs = this.charactersService.getCharacters(this.charsLimit, this.charsOffset)
     //   .subscribe(
     //     resp => {
-    //       this.list$ = [...this.list$, ...resp];
+    //       this.list = [...this.list, ...resp];
     //     }
     //   );
     this.store.dispatch(LoadCharsList({

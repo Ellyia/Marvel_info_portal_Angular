@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomMarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
+import { BannerComponent } from '@core/components/banner/banner.component';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'character',
+  selector: 'character-details',
   standalone: true,
-  imports: [],
-  templateUrl: './character.component.html',
-  styleUrl: './character.component.scss'
+  imports: [BannerComponent],
+  templateUrl: './character-details.component.html',
+  styleUrl: './character-details.component.scss'
 })
-export class CharacterComponent {
+export class CharacterDetailsComponent {
 
   character!: CustomMarvelChar;
   id!: number;
@@ -24,10 +25,9 @@ export class CharacterComponent {
   ngOnInit() {
     this.id = +(this.route.snapshot.paramMap.get('id') || 0);
 
-    this.subs = this.charactersService.getCharacter(this.id).subscribe(
-      res => {
+    this.subs = this.charactersService.getCharacter(this.id)
+      .subscribe(res => {
         this.character = res;
-      }
-    )
+      });
   }
 }

@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <app-banner></app-banner>
+
+  <div class="comic">
+    <div class="img">
+      <img src="{{comics.thumbnailUrl}}" alt="comics-image">
+    </div>
+
+    <div class="info">
+      <h3>{{comics.title}}</h3>
+      <p>{{comics.description || comics.textObjects.text}}</p>
+      <p>{{comics.pages}} pages</p>
+      <p>Language: {{comics.textObjects.language}}</p>
+      <p>{{comics.price}}</p>
+    </div>
+
+    <div class="btn">
+      <button (click)="toComics()">Back to all</button>
+    </div>
+  </div>
+</div>

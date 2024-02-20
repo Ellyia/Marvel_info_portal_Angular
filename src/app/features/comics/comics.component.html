@@ -1,0 +1,18 @@
+<div class="wrapper">
+
+  <app-banner></app-banner>
+
+  <div class="wrapper-comics">
+    @for (comic of comicsList; track comic.id) {
+      <app-comic-card
+        [comic]="comic"
+        (onCardClick)="showComic($event)"
+      >
+      </app-comic-card>
+    }
+  </div>
+
+  @if (amountOfReceivedComics > 0) {
+    <button (click)="loadMore()">Load more ...</button>
+  }
+</div>

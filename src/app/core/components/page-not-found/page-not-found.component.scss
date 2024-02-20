@@ -1,7 +1,7 @@
 @import 'mixines';
 
 div {
-  @include flex(_, center, center);
+  @include flex(center, _ , center);
   width: 150px;
   height: 150px;
   border-radius: 50%;

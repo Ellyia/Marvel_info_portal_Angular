@@ -1,0 +1,24 @@
+@import 'mixines';
+@import 'variables';
+
+.wrapper {
+  padding: $common-padding;
+  margin-bottom: $common-margin-bottom;
+
+    .wrapper-comics {
+      margin-bottom: $common-margin-bottom;
+
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+      grid-auto-rows: minmax(100px, auto);
+    }
+
+    button {
+      @include btn(#fff, $darkred);
+      width: 180px;
+      display: block;
+      padding: 5px 0;
+      margin: 0 auto 20px;
+    }
+}

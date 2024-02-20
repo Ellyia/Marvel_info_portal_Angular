@@ -1,37 +1,25 @@
 <div class="wrapper">
   <h5>Or find character by name:</h5>
-  <form [formGroup]="charFinder">
+  <form [formGroup]="charFinderForm">
     <input
       type="text"
       name="charName"
       id="charName"
       placeholder="Enter name"
       formControlName="charName"
-      (input)="clearMsg()"
+      (input)="clearSearchMsg()"
     >
-    <button (click)="searchCharacter()">FIND</button>
+    <button (click)="onSearchCharacter()">FIND</button>
   </form>
 
-  @switch (msg) {
-    @case (enumMessages.found) {
+  @switch (searchStatus) {
+    @case (characterSearchStatusEnum.Found) {
       <div class="visit">
         <p>I've found {{character.name}} page. You can visit it... =></p>
         <button (click)="navigateToCharPage(character)">{{character.name}} page</button>
-      </div>}
-    @case (enumMessages.emptyInput) {<p>Tis field is required</p>}
-    @case (enumMessages.notFound) {<p>The character wasn't found. Check the name and try again.</p>}
-    @default {}
+      </div>
+    }
+    @case (characterSearchStatusEnum.EmptyInput) { <p>This field is required</p> }
+    @case (characterSearchStatusEnum.NotFound) { <p>The character wasn't found. Check the name and try again.</p> }
   }
-
-  <!-- @if (character) {
-    <div class="visit">
-      <p>I've found {{character.name}} page. You can visit it... =></p>
-      <button (click)="navigateToCharPage(character)">{{character.name}} page</button>
-    </div>
-  } @else if (msg === EMSG.emptyInput) {
-    <p>Tis field is required</p>
-  } @else if (msg === EMSG.notFound) {
-    <p>The character wasn't found. Check the name and try again.</p>
-  } -->
-
 </div>

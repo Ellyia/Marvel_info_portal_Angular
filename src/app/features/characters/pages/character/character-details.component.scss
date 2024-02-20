@@ -8,27 +8,19 @@
 }
 
 .wrapper {
-  margin: 0 4%;
-
-  display: flex;
-  box-shadow: 0 0 10px 1px gray;
-  background-color: #fff;
-  margin-bottom: 20px;
-  font-size: 12px;
-  min-height: 150px;
+  padding: $common-padding;
 
   .character {
-    @include random-part(#fff, #000);
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    gap: 40px;
+    background-color: transparent;
+    margin-bottom: 20px;
 
     .picture-of-character {
-      width: 40%;
-      margin-right: 20px;
 
       img {
-        width: 160px;
-        height: 160px;
-        object-fit: cover;
+        width: 100%;
       }
     }
 
@@ -37,6 +29,7 @@
 
       h4 {
         margin-bottom: 20px;
+        font-size: 20px;
       }
 
       p {
