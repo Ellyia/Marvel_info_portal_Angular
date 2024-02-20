@@ -14,11 +14,13 @@ import { FindCharacterFormComponent } from './components/find-character-form/fin
 import { IAppState } from 'app/store/state/app.state';
 import { LoadCharsList, ResetCharsList } from 'app/store/actions/characters.actions';
 import { selectCharactersList } from 'app/store/selectors/characters.selectors';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'characters',
   standalone: true,
   imports: [
+    AsyncPipe,
     RandomCharacterComponent,
     CharacterCardComponent,
     CharacterInfoComponent,
@@ -31,10 +33,10 @@ import { selectCharactersList } from 'app/store/selectors/characters.selectors';
 export class CharactersComponent implements OnDestroy {
 
   charactersList$: Observable<CustomMarvelChar[]> = this.store.select(selectCharactersList);
-  // list: CustomMarvelChar[] | [] = [];
+
   subs!: Subscription;
 
-  charsLimit: number = 9; // 109 = err 409
+  charsLimit: number = 16; // 109 = err 409
 
   charsOffset: number = 0; // start
 
@@ -49,15 +51,9 @@ export class CharactersComponent implements OnDestroy {
   }
 
   showCharacters(): void {
-    // this.subs = this.charactersService.getCharacters(this.charsLimit, this.charsOffset)
-    //   .subscribe(
-    //     resp => {
-    //       this.list = [...this.list, ...resp];
-    //     }
-    //   );
     this.store.dispatch(LoadCharsList({
-      start: this.charsOffset,
-      count: this.charsLimit
+      count: this.charsLimit,
+      start: this.charsOffset
     }));
   }
 
@@ -74,6 +70,6 @@ export class CharactersComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.subs.unsubscribe();
+    this.subs?.unsubscribe();
   }
 }

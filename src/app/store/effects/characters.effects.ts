@@ -13,7 +13,7 @@ export class CharactersEffects {
   LoadCharactersList$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ECharactersActions.LoadCharsList),
-      switchMap(({start, count}) => this.charactersService.getCharacters(start, count)
+      switchMap(({start, count}) => this.charactersService.getCharacters(count, start)
         .pipe(
           map(chars => LoadCharsListSuccess({characters: chars})),
           tap(chars => console.log(chars)),
