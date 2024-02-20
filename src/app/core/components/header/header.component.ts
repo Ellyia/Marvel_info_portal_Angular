@@ -1,26 +1,13 @@
+
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationComponent } from '@core/components/navigation/navigation.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [NavigationComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
-  constructor(private router: Router) {}
-
-  toCharacters(): void {
-    this.router.navigate(['characters']); // active red
-  }
-
-  toComics(): void {
-    this.router.navigate(['comics']);
-  }
-
-  toUs(): void {
-    // this.router.navigate(['/weAre']);
-  }
 }
