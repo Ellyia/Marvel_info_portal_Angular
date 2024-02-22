@@ -1,6 +1,6 @@
 export enum ActiveRouteNavigationEnum {
-  CharactersRoute,
-  ComicsRoute,
-  AboutUsRoute,
-  NotFoundRoute
+  Characters,
+  Comics,
+  AboutUs,
+  NotFound
 }
