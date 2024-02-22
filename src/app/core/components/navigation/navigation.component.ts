@@ -1,29 +1,27 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ActiveRouteNavigationEnum } from '@core/enums/active-route-nav.enum';
-import { Subscription } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'navigation',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgClass],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent implements OnDestroy {
   activeRouteNavigationEnum = ActiveRouteNavigationEnum;
 
-  activeTab: ActiveRouteNavigationEnum = ActiveRouteNavigationEnum.CharactersRoute;
+  activeTab: ActiveRouteNavigationEnum = ActiveRouteNavigationEnum.Characters;
 
   routerSub!: Subscription;
 
   constructor(private router: Router) {
-    this.routerSub = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.activeTabHighlight();
-      }
-    })
+    this.routerSub = this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => this.activeTabHighlight());
   }
 
   toCharacters(): void {
@@ -39,20 +37,20 @@ export class NavigationComponent implements OnDestroy {
   }
 
   activeTabHighlight() {
-    const currentRoute = this.router.url; // this.activatedRoute.snapshot;
+    const currentRoute = this.router.url;
 
     if (currentRoute.includes('characters')) {
-      this.activeTab = ActiveRouteNavigationEnum.CharactersRoute;
+      this.activeTab = ActiveRouteNavigationEnum.Characters;
     } else if (currentRoute.includes('comics')) {
-      this.activeTab = ActiveRouteNavigationEnum.ComicsRoute;
+      this.activeTab = ActiveRouteNavigationEnum.Comics;
     } else if (currentRoute.includes('weAre')) {
-      this.activeTab = ActiveRouteNavigationEnum.AboutUsRoute;
+      this.activeTab = ActiveRouteNavigationEnum.AboutUs;
     } else {
-      this.activeTab = ActiveRouteNavigationEnum.NotFoundRoute;
+      this.activeTab = ActiveRouteNavigationEnum.NotFound;
     }
   }
 
   ngOnDestroy() {
-    this.routerSub.unsubscribe();
+    this.routerSub?.unsubscribe();
   }
 }

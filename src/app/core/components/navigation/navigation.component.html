@@ -1,5 +1,5 @@
 <div>
-  <button [ngClass]="{'active': activeTab === activeRouteNavigationEnum.CharactersRoute}" (click)="toCharacters()">Characters</button> /
-  <button [ngClass]="{'active': activeTab === activeRouteNavigationEnum.ComicsRoute}" (click)="toComics()">Comics</button> /
-  <button [ngClass]="{'active': activeTab === activeRouteNavigationEnum.AboutUsRoute}" (click)="toUs()" disabled>About Us</button>
+  <button [class.active]="activeTab === activeRouteNavigationEnum.Characters" (click)="toCharacters()">Characters</button> /
+  <button [class.active]="activeTab === activeRouteNavigationEnum.Comics" (click)="toComics()">Comics</button> /
+  <button [ngClass]="{'active': activeTab === activeRouteNavigationEnum.AboutUs}" (click)="toUs()" disabled>About Us</button>
 </div>
