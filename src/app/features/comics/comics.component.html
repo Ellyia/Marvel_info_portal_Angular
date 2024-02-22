@@ -3,7 +3,7 @@
   <app-banner></app-banner>
 
   <div class="wrapper-comics">
-    @for (comic of comicsList; track comic.id) {
+    @for (comic of comicsList$ | async; track comic.id) {
       <app-comic-card
         [comic]="comic"
         (onCardClick)="showComic($event)"
@@ -12,7 +12,7 @@
     }
   </div>
 
-  @if (amountOfReceivedComics > 0) {
+  @if (amountOfReceivedComics > comicsLimit - 1) {
     <button (click)="loadMore()">Load more ...</button>
   }
 </div>

@@ -10,6 +10,7 @@ import { routes } from './app.routes';
 import { httpInterceptor } from '@core/interceptors/http.interceptor';
 import { appReducers } from './store/reducers/app.reducers';
 import { CharactersEffects } from './store/effects/characters.effects';
+import { ComicsEffects } from './store/effects/comics.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,6 @@ export const appConfig: ApplicationConfig = {
       trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
     }), // { maxAge: 25, logOnly: !isDevMode() } - // alternative to `StoreDevtoolsModule.instrument`
-    provideEffects([ CharactersEffects ]), // [CoursesEffects, AuthEffects] - // alternative to `EffectsModule.forRoot` // RouterEffects - what is this
+    provideEffects([ CharactersEffects, ComicsEffects ]), // [CoursesEffects, AuthEffects] - // alternative to `EffectsModule.forRoot` // RouterEffects - what is this
   ]
 };

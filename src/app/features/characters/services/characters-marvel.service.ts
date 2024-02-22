@@ -17,31 +17,28 @@ export class CharactersMarvelService {
   getCharacters(charsLimit: number, charsOffset: number): Observable<CustomMarvelChar[]> {
     this.spinnerService.startLoading(); // to interseptor
 
-    return this.http.get<MarvelApiCharsResponse>(
-      `/characters?limit=${charsLimit}&offset=${charsOffset}`
-    ).pipe(
-      map(res => res.data.results.map(char => this.transformCharacter(char))),
-      tap(() => this.spinnerService.stopLoading())
-    )
+    return this.http.get<MarvelApiCharsResponse>(`/characters?limit=${charsLimit}&offset=${charsOffset}`)
+      .pipe(
+        map(res => res.data.results.map(char => this.transformCharacter(char))),
+        tap(() => this.spinnerService.stopLoading())
+      )
   }
 
   getCharacter(id: number): Observable<CustomMarvelChar> {
     this.spinnerService.startLoading(); // to interseptor
 
-    return this.http.get<MarvelApiCharsResponse>(
-      `/characters/${id}`
-    ).pipe(
-      map(res => this.transformCharacter(res.data.results[0])),
-      tap(() => this.spinnerService.stopLoading())
-    )
+    return this.http.get<MarvelApiCharsResponse>(`/characters/${id}`)
+      .pipe(
+        map(res => this.transformCharacter(res.data.results[0])),
+        tap(() => this.spinnerService.stopLoading())
+      )
   }
 
   getCharacterByName(name: string): Observable<MarvelChar> {
-    return this.http.get<MarvelApiCharsResponse>(
-      `/characters?name=${name}`
-    ).pipe(
-      map(res => res.data.results[0])
-    )
+    return this.http.get<MarvelApiCharsResponse>(`/characters?name=${name}`)
+      .pipe(
+        map(res => res.data.results[0])
+      )
   }
 
   transformCharacter(char: MarvelChar): CustomMarvelChar {

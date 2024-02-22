@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { CustomMarvelChar } from '@characters/models/characters.model';
-import { ECharactersActions } from './actionTypes';
+import { ECharactersActions } from './action-types.enum';
 
 export interface GetCharactersRequestInterface {
   start: number

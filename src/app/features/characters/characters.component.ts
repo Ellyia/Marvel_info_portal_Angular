@@ -37,7 +37,6 @@ export class CharactersComponent implements OnDestroy {
   subs!: Subscription;
 
   charsLimit: number = 16; // 109 = err 409
-
   charsOffset: number = 0; // start
 
   character: CustomMarvelChar | null = null;

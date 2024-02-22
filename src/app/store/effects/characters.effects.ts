@@ -5,7 +5,7 @@ import { switchMap, map, tap, catchError } from 'rxjs/operators';
 import { CharsListLoadedFailure, LoadCharsListSuccess } from '../actions/characters.actions';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { of } from 'rxjs/internal/observable/of';
-import { ECharactersActions } from '../actions/actionTypes';
+import { ECharactersActions } from '../actions/action-types.enum';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()

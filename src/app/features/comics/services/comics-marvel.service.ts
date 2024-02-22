@@ -18,20 +18,18 @@ export class ComicsMarvelService {
 
     this.spinnerService.startLoading(); // to interseptor
 
-    return this.http.get<MarvelApiComicsResponse>(
-      `/comics?limit=${comicsLimit}&offset=${comicsOffset}`
-    ).pipe(
-      map(res => res.data.results.map(comic => this.transformComic(comic))),
-      tap(() => this.spinnerService.stopLoading())
-    )
+    return this.http.get<MarvelApiComicsResponse>(`/comics?limit=${comicsLimit}&offset=${comicsOffset}`)
+      .pipe(
+        map(res => res.data.results.map(comic => this.transformComic(comic))),
+        tap(() => this.spinnerService.stopLoading())
+      );
   }
 
   getComic(id: number): Observable<CustomMarvelComic> {
-    return this.http.get<MarvelApiComicsResponse>(
-      `/comics/${id}`
-    ).pipe(
-      map(res => this.transformComic(res.data.results[0]))
-    )
+    return this.http.get<MarvelApiComicsResponse>(`/comics/${id}`)
+      .pipe(
+        map(res => this.transformComic(res.data.results[0]))
+      );
   }
 
   transformComic(comic: MarvelComic): CustomMarvelComic {
@@ -45,5 +43,4 @@ export class ComicsMarvelService {
       textObjects: comic.textObjects[0]
     }
   }
-
 }

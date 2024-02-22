@@ -7,3 +7,10 @@ export enum ECharactersActions {
   CharLoadedSuccess = '[Characters] Load Character Success',
   CharLoadedFailure = '[Characters] Load Character Failure',
 }
+
+export enum EComicsActions {
+  LoadComicsList = '[Comics] Load Comics',
+  ComicsListLoadedSuccess = '[Comics] Load Comics Success',
+  ComicsListLoadedFailure = '[Comics] Load Comics Failure',
+  ResetComicsList = '[Comics] Reset Comics',
+}

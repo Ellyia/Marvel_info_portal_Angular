@@ -9,7 +9,7 @@ export const charactersReducer = createReducer(
     ...state,
     requestErrors: null
   })),
-  on(LoadCharsListSuccess, (state, {characters}) => ({
+  on(LoadCharsListSuccess, (state, { characters }) => ({
     ...state,
     charactersList: [...state.charactersList, ...characters]
   })),
