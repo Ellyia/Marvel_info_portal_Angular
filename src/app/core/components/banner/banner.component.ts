@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-page-not-found',
+  selector: 'app-banner',
   standalone: true,
   imports: [],
-  templateUrl: './page-not-found.component.html',
-  styleUrl: './page-not-found.component.scss',
+  templateUrl: './banner.component.html',
+  styleUrl: './banner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageNotFoundComponent {
-
+export class BannerComponent {
 }

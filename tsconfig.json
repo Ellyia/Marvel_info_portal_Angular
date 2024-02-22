@@ -4,12 +4,15 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
+      "@core/*": [
+        "app/core/*"
+      ],
       "@characters/*": [
         "app/features/characters/*"
       ],
-      "@core/*": [
-        "app/core/*"
-      ]
+      "@comics/*": [
+        "app/features/comics/*"
+      ],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

@@ -34,7 +34,7 @@
         flex-direction: column;
 
         button {
-          @include btn(#fff, $primary-dark);
+          @include btn(#fff, $primary-gray);
 
           &:first-child {
             @include btn(#fff, $darkred);
@@ -43,7 +43,6 @@
         }
       }
     }
-
   }
 
   h5, p {
@@ -64,5 +63,6 @@
     box-shadow: 0 2px 5px 0px gray;
     margin-bottom: 5px;
     padding: 2px 10px;
+    cursor: pointer;
   }
 }

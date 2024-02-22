@@ -22,19 +22,21 @@
     </div>
 
     <div class="wrapper-aside">
-      @if (character) {
-        <app-character-info [character]="character">
-        </app-character-info>
-      } @else {
-        <p class="visible-wrap">
-          Please, select a character to see information
-        </p>
-      }
+      <div class="character-info">
+        @if (character) {
+          <app-character-info [character]="character">
+          </app-character-info>
+        } @else {
+          <p class="visible-wrap">
+            Please, select a character to see information
+          </p>
+        }
 
-      <find-character-form></find-character-form>
+        <find-character-form></find-character-form>
+      </div>
+
+      <img class="bg-decoration" src="assets/img/vision.png" alt="vision"/>
     </div>
+
   </div>
-
-  <img class="bg-decoration" src="assets/img/vision.png" alt="vision"/>
-
 </div>

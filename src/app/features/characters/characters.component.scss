@@ -2,7 +2,8 @@
 @import 'variables';
 
 .wrapper {
-  margin: 0 4%;
+  padding: $common-padding;
+  margin-bottom: $common-margin-bottom;
 
   .wrapper-all-chars {
     display: grid;
@@ -12,12 +13,13 @@
     gap: 20px;
 
     .wrapper-characters {
+      margin-bottom: $common-margin-bottom;
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
       grid-auto-rows: minmax(100px, auto);
       grid-area: "characters";
-      margin-bottom: 20px;
     }
 
     button {
@@ -30,6 +32,9 @@
 
     .wrapper-aside {
       grid-area: "aside";
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .visible-wrap { // mixine
         padding: 20px;
@@ -40,11 +45,11 @@
     }
   }
 
-  .bg-decoration {
-    width: 30%;
-    position: absolute;
-    right: -1%;
-    bottom: -70%;
+  .bg-decoration { //
+    // width: 30%;
+    // position: absolute;
+    // right: -1%;
+    // bottom: -70%;
     z-index: -1;
   }
 }

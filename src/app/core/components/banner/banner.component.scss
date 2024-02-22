@@ -1,0 +1,25 @@
+@import 'variables';
+
+.wrapper {
+  height: 100px;
+  background-color: $primary-dark;
+  margin-bottom: 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+
+  .wrapper-text{
+    display: flex;
+    align-items: center;
+    font-size: 16p;
+    font-weight: 600;
+    word-spacing: 3px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+
+    img {
+      margin-right: 80px;
+    }
+  }
+}

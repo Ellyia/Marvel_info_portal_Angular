@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { Subscription } from 'rxjs';
-import { CharacterSearchStatusEnum } from '@characters/models/characters.enum';
+import { CharacterSearchStatusEnum } from '@characters/enums/characters.enum';
 @Component({
   selector: 'find-character-form',
   standalone: true,
@@ -53,6 +53,6 @@ export class FindCharacterFormComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.subs?.unsubscribe(); // unsubscribe
   }
 }

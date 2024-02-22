@@ -28,8 +28,8 @@ export class CharactersComponent implements OnDestroy {
   list: CustomMarvelChar[] = [];
   subs!: Subscription;
 
-  charsLimit: number = 9;
-  charsOffset: number = 9; // start
+  charsLimit: number = 16;
+  charsOffset: number = 0; // start
 
   character: CustomMarvelChar | null = null;
 
@@ -58,6 +58,6 @@ export class CharactersComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    // this.subs.unsubscribe();
   }
 }
