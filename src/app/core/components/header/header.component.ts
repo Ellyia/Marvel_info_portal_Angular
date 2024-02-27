@@ -1,5 +1,6 @@
 
 import { Component } from '@angular/core';
+
 import { NavigationComponent } from '@core/components/navigation/navigation.component';
 
 @Component({

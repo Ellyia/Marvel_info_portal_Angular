@@ -1,6 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { LoadCharSuccess, ResetCharsList, LoadCharsListSuccess, CharsListLoadedFailure, LoadCharsList } from '../actions/characters.actions';
+import {
+  ResetCharsList,
+  LoadCharDetails,
+  LoadCharsListSuccess,
+  CharsListLoadedFailure,
+  LoadCharsList,
+  LoadRandomChar,
+  LoadRandomCharSuccess,
+  LoadCharInfo,
+  LoadCharInfoSuccess,
+  LoadCharDetailsSuccess
+} from '../actions/characters.actions';
 import { initialCharactersState } from '../state/characters.state';
 
 export const charactersReducer = createReducer(
@@ -22,11 +33,28 @@ export const charactersReducer = createReducer(
     ...state,
     charactersList: [],
   })),
-  // on(LoadCharacter, (state) => ({
-  //   ...state
-  // })),
-  on(LoadCharSuccess, (state, action) => ({
+  // random
+  on(LoadRandomChar, (state) => ({
+    ...state
+  })),
+  on(LoadRandomCharSuccess, (state, {randomChar}) => ({
     ...state,
-    character: action.character
-  }))
+    randomCharacter: randomChar
+  })),
+  // info
+  on(LoadCharInfo, (state) => ({
+    ...state
+  })),
+  on(LoadCharInfoSuccess, (state, {character}) => ({
+    ...state,
+    infoCharacter: character
+  })),
+  // details
+  on(LoadCharDetails, (state) => ({
+    ...state
+  })),
+  on(LoadCharDetailsSuccess, (state, {character}) => ({
+    ...state,
+    characterDetails: character
+  })),
 );

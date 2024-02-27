@@ -1,8 +1,9 @@
 import { NgClass } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { ActiveRouteNavigationEnum } from '@core/enums/active-route-nav.enum';
 import { filter, Subscription } from 'rxjs';
+
+import { ActiveRouteNavigationEnum } from '@core/enums/active-route-nav.enum';
 
 @Component({
   selector: 'navigation',
@@ -12,8 +13,8 @@ import { filter, Subscription } from 'rxjs';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent implements OnDestroy {
-  activeRouteNavigationEnum = ActiveRouteNavigationEnum;
 
+  activeRouteNavigationEnum = ActiveRouteNavigationEnum;
   activeTab: ActiveRouteNavigationEnum = ActiveRouteNavigationEnum.Characters;
 
   routerSub!: Subscription;
@@ -36,7 +37,7 @@ export class NavigationComponent implements OnDestroy {
     // this.router.navigate(['weAre']);
   }
 
-  activeTabHighlight() {
+  activeTabHighlight(): void {
     const currentRoute = this.router.url;
 
     if (currentRoute.includes('characters')) {
@@ -50,7 +51,7 @@ export class NavigationComponent implements OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.routerSub?.unsubscribe();
   }
 }

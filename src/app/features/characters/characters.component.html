@@ -14,7 +14,7 @@
       @for (char of charactersList$ | async; track char.id) {
         <app-character-card
           [char]="char"
-          (onCardClick)="showCharacter($event)"
+          (onCardClick)="showCharacterInfo($event)"
         >
         </app-character-card>
       }
@@ -23,8 +23,8 @@
 
     <div class="wrapper-aside">
       <div class="character-info">
-        @if (character) {
-          <app-character-info [character]="character">
+        @if (character$ | async) {
+          <app-character-info [character]="character$ | async">
           </app-character-info>
         } @else {
           <p class="visible-wrap">

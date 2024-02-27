@@ -1,7 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { initialComicsState } from '../state/comics.state';
-import { LoadComicsList, LoadComicsListSuccess, LoadComicsListFailure, ResetComicsList } from '../actions/comics.actions';
+import {
+  LoadComicsList,
+  LoadComicsListSuccess,
+  ResetComicsList
+} from '../actions/comics.actions';
 
 export const comicsReducer = createReducer(
   initialComicsState,

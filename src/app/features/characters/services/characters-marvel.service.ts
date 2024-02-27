@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
 import { CustomMarvelChar, MarvelApiCharsResponse, MarvelChar } from '@characters/models/characters.model';
 import { SpinnerService } from '@core/services/spinner.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CharactersMarvelService {
 
   constructor(

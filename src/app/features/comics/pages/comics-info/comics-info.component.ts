@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { BannerComponent } from '@core/components/banner/banner.component';
 import { CustomMarvelComic } from '@comics/models/comics.model';
 import { ComicsMarvelService } from '@comics/services/comics-marvel.service';
@@ -11,7 +12,8 @@ import { ComicsMarvelService } from '@comics/services/comics-marvel.service';
   templateUrl: './comics-info.component.html',
   styleUrl: './comics-info.component.scss'
 })
-export class ComicsInfoComponent {
+export class ComicsInfoComponent implements OnInit {
+
   id!: number;
   comics!: CustomMarvelComic;
 

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SpinnerService } from '@core/services/spinner.service';
 import { map, Observable, tap } from 'rxjs';
+
+import { SpinnerService } from '@core/services/spinner.service';
 import { CustomMarvelComic, MarvelApiComicsResponse, MarvelComic } from '../models/comics.model';
 
 @Injectable({

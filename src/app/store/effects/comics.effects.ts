@@ -3,10 +3,12 @@ import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { switchMap, map, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { EComicsActions } from '../actions/action-types.enum';
-import { LoadComicsListSuccess, LoadComicsListFailure } from '../actions/comics.actions';
+import {
+  LoadComicsListSuccess,
+  LoadComicsListFailure
+} from '../actions/comics.actions';
 import { ComicsMarvelService } from 'app/features/comics/services/comics-marvel.service';
-
+import { EComicsActions } from '../enums/comics-actions.enum';
 
 @Injectable()
 export class ComicsEffects {

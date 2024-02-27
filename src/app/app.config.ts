@@ -1,19 +1,20 @@
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
-
 import { routes } from './app.routes';
 import { httpInterceptor } from '@core/interceptors/http.interceptor';
+
 import { appReducers } from './store/reducers/app.reducers';
 import { CharactersEffects } from './store/effects/characters.effects';
 import { ComicsEffects } from './store/effects/comics.effects';
+import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    CharactersMarvelService,
     provideRouter(routes),
     importProvidersFrom(HttpClientModule), // importProvidersFrom(HttpClientModule)
     provideHttpClient(withInterceptors([httpInterceptor])),

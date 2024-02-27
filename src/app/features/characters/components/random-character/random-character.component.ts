@@ -1,7 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 import { CustomMarvelChar } from '@characters/models/characters.model';
+import { IAppState } from 'app/store/state/app.state';
+import { LoadRandomChar } from 'app/store/actions/characters.actions';
+import { selectRandomCharacter } from 'app/store/selectors/characters.selectors';
 
 @Component({
   selector: 'app-random-character',
@@ -11,29 +15,33 @@ import { CustomMarvelChar } from '@characters/models/characters.model';
   styleUrl: './random-character.component.scss'
 })
 export class RandomCharacterComponent implements OnInit, OnDestroy {
-  id!: number;
+
+  randomChar$: Observable<CustomMarvelChar | null> = this.store.select(selectRandomCharacter);
+
   subs!: Subscription;
 
-  char: CustomMarvelChar | null = null;
+  randomChar: CustomMarvelChar | null = null;
 
-  constructor(private charactersService: CharactersMarvelService){}
+  constructor(private store: Store<IAppState>){}
 
   ngOnInit(): void {
-    this.updateChar();
+    this.subs = this.randomChar$.subscribe(randomCar => {
+      this.randomChar = randomCar;
+    })
+
+    if (!this.randomChar) {
+      this.updateChar();
+    }
   }
 
   updateChar(): void {
-    this.id = Math.floor(Math.random() * (1011400-1011000) + 1011000);
+    const id = Math.floor(Math.random() * (1011400-1011000) + 1011000);
 
-    this.subs = this.charactersService.getCharacter(this.id)
-      .subscribe((randomCaracter) => {
-        this.char = randomCaracter;
-      }
-    )
+    this.store.dispatch(LoadRandomChar({ id }));
   }
 
   redirectToWiki(): void {
-    window.open(this.char?.wikiUrl, '_blank');
+    window.open(this.randomChar?.wikiUrl, '_blank');
   }
 
   ngOnDestroy(): void {

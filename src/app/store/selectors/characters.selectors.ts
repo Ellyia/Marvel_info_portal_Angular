@@ -15,7 +15,17 @@ export const selectRequestErrors = createSelector(
   (state: ICharactersState) => state.requestErrors
 );
 
-export const selectCharacter = createSelector(
+export const selectRandomCharacter = createSelector(
   selectCharacters,
-  (state: ICharactersState) => state.character
+  (state: ICharactersState) => state.randomCharacter
+);
+
+export const selectInfoCharacter = createSelector(
+  selectCharacters,
+  (state: ICharactersState) => state.infoCharacter
+);
+
+export const selectCharacterDetails = createSelector(
+  selectCharacters,
+  (state: ICharactersState) => state.characterDetails
 );

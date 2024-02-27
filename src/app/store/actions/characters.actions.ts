@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { CustomMarvelChar } from '@characters/models/characters.model';
-import { ECharactersActions } from './action-types.enum';
+import { ECharactersActions } from '../enums/characters-actions.enum';
 
 export interface GetCharactersRequestInterface {
   start: number
@@ -15,7 +15,7 @@ export interface BackendErrorsInterface {
 export const LoadCharsList = createAction(
   ECharactersActions.LoadCharsList,
   props<{ start: number; count: number }>()
-)
+);
 
 export const LoadCharsListSuccess = createAction(
   ECharactersActions.CharsListLoadedSuccess,
@@ -31,13 +31,57 @@ export const ResetCharsList = createAction(
   ECharactersActions.ResetCharsList
 );
 
-export const LoadCharacter = createAction(
-  ECharactersActions.LoadCharacter,
+// random
+
+export const LoadRandomChar = createAction(
+  ECharactersActions.LoadRandomCharacter,
   props<{ id: number }>()
   // props<{ name: string }>()
 )
 
-export const LoadCharSuccess = createAction(
-  ECharactersActions.CharLoadedSuccess,
+export const LoadRandomCharSuccess = createAction(
+  ECharactersActions.RandomCharLoadedSuccess,
+  props<{ randomChar: CustomMarvelChar }>()
+);
+
+export const LoadRandomCharFailure = createAction(
+  ECharactersActions.RandomCharLoadedFailure,
+  props<{ errors: BackendErrorsInterface}>()
+);
+
+export const ResetRandomChar = createAction(
+  ECharactersActions.ResetRandomChar
+);
+
+// info
+
+export const LoadCharInfo = createAction(
+  ECharactersActions.LoadCharacterInfo,
+  props<{ id: number }>()
+)
+
+export const LoadCharInfoSuccess = createAction(
+  ECharactersActions.CharacterInfoLoadedSuccess,
+  props<{ character: CustomMarvelChar }>()
+);
+
+export const LoadCharInfoFailure = createAction(
+  ECharactersActions.CharacterInfoLoadedFailure,
+  props<{ errors: BackendErrorsInterface}>()
+);
+
+export const ResetCharInfo = createAction(
+  ECharactersActions.ResetCharacterInfo
+);
+
+// details
+
+export const LoadCharDetails = createAction(
+  ECharactersActions.LoadCharacterDetails,
+  props<{ id: number }>()
+);
+
+export const LoadCharDetailsSuccess = createAction(
+  ECharactersActions.LoadCharacterDetailsSuccess,
   props<{ character: CustomMarvelChar }>()
 );

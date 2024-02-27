@@ -1,17 +1,18 @@
 import { CustomMarvelChar } from '@characters/models/characters.model';
 import { BackendErrorsInterface } from '../actions/characters.actions';
+
 export interface ICharactersState {
   charactersList: CustomMarvelChar[];
-  character: CustomMarvelChar | null;
+  randomCharacter: CustomMarvelChar | null;
+  infoCharacter: CustomMarvelChar | null;
+  characterDetails: CustomMarvelChar | null;
   requestErrors: BackendErrorsInterface | null;
-  charsLimit: number;
-  charsOffset: number;
 }
 
 export const initialCharactersState: ICharactersState = {
   charactersList: [],
-  character: null,
+  randomCharacter: null,
+  infoCharacter: null,
   requestErrors: null,
-  charsLimit: 9,
-  charsOffset: 9
+  characterDetails: null,
 }

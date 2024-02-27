@@ -12,7 +12,6 @@ import { IAppState } from 'app/store/state/app.state';
 import { CustomMarvelComic } from './models/comics.model';
 import { ComicCardComponent } from './components/comic-card/comic-card.component';
 
-
 @Component({
   selector: 'app-comics',
   standalone: true,

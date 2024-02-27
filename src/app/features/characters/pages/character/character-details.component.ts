@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+
 import { CustomMarvelChar } from '@characters/models/characters.model';
-import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { BannerComponent } from '@core/components/banner/banner.component';
-import { Subscription } from 'rxjs';
+import { LoadCharInfo } from 'app/store/actions/characters.actions';
+import { selectCharacterDetails } from 'app/store/selectors/characters.selectors';
+import { IAppState } from 'app/store/state/app.state';
 
 @Component({
   selector: 'character-details',
@@ -12,22 +16,30 @@ import { Subscription } from 'rxjs';
   templateUrl: './character-details.component.html',
   styleUrl: './character-details.component.scss'
 })
-export class CharacterDetailsComponent {
+export class CharacterDetailsComponent implements OnInit, OnDestroy {
 
-  character!: CustomMarvelChar;
+  character$: Observable<CustomMarvelChar | null> = this.store.select(selectCharacterDetails);
+
+  character!: CustomMarvelChar | null;
   id!: number;
   subs!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private charactersService: CharactersMarvelService) {}
+    private store: Store<IAppState>
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.id = +(this.route.snapshot.paramMap.get('id') || 0);
 
-    this.subs = this.charactersService.getCharacter(this.id)
-      .subscribe(res => {
-        this.character = res;
-      });
+    this.store.dispatch(LoadCharInfo({ id: this.id}));
+
+    this.subs = this.character$.subscribe(char => {
+      this.character = char;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subs?.unsubscribe();
   }
 }

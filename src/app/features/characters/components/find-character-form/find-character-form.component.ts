@@ -1,10 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { MarvelChar } from '@characters/models/characters.model';
 import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
-import { Subscription } from 'rxjs';
 import { CharacterSearchStatusEnum } from '@characters/enums/characters.enum';
+
 @Component({
   selector: 'find-character-form',
   standalone: true,
@@ -13,6 +15,7 @@ import { CharacterSearchStatusEnum } from '@characters/enums/characters.enum';
   styleUrl: './find-character-form.component.scss'
 })
 export class FindCharacterFormComponent implements OnDestroy {
+
   characterSearchStatusEnum = CharacterSearchStatusEnum;
 
   subs!: Subscription;
@@ -44,15 +47,15 @@ export class FindCharacterFormComponent implements OnDestroy {
     }
   }
 
-  clearSearchMsg() {
+  clearSearchMsg(): void {
     this.searchStatus = CharacterSearchStatusEnum.ClearMsg;
   }
 
-  navigateToCharPage(obj: MarvelChar) {
+  navigateToCharPage(obj: MarvelChar): void {
     this.router.navigate([`/characters/${obj.id}`]);
   }
 
   ngOnDestroy(): void {
-    this.subs?.unsubscribe(); // unsubscribe
+    this.subs?.unsubscribe();
   }
 }

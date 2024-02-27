@@ -2,14 +2,14 @@
 
   <div class="character">
     <div class="picture-of-character">
-      <img src="{{char?.thumbnailUrl}}" alt="picture of character">
+      <img src="{{randomChar?.thumbnailUrl}}" alt="picture of character">
     </div>
     <div class="info-of-character">
-      <h4>{{char?.name}}</h4>
-      <p>{{char?.description}}</p>
+      <h4>{{randomChar?.name}}</h4>
+      <p>{{randomChar?.description}}</p>
 
       <div class="btns-char">
-        <button class="red"><a target="blank" href={{char?.homepageUrl}}>HOMEPAGE</a></button>
+        <button class="red"><a target="blank" href={{randomChar?.homepageUrl}}>HOMEPAGE</a></button>
         <button (click)="redirectToWiki()">WIKI</button>
       </div>
     </div>

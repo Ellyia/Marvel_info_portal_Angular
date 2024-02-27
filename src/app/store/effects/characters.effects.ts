@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { switchMap, map, tap, catchError } from 'rxjs/operators';
-
-import { CharsListLoadedFailure, LoadCharsListSuccess } from '../actions/characters.actions';
-import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { of } from 'rxjs/internal/observable/of';
-import { ECharactersActions } from '../actions/action-types.enum';
 import { HttpErrorResponse } from '@angular/common/http';
+
+import {
+  CharsListLoadedFailure,
+  LoadCharDetailsSuccess,
+  LoadCharInfoSuccess,
+  LoadCharsListSuccess,
+  LoadRandomCharSuccess
+} from '../actions/characters.actions';
+import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
+import { ECharactersActions } from '../enums/characters-actions.enum';
 
 @Injectable()
 export class CharactersEffects {
@@ -16,7 +22,6 @@ export class CharactersEffects {
       switchMap(({start, count}) => this.charactersService.getCharacters(count, start)
         .pipe(
           map(chars => LoadCharsListSuccess({characters: chars})),
-          tap(chars => console.log(chars)),
           catchError((errorResp: HttpErrorResponse) => {
             return of(CharsListLoadedFailure({ errors: errorResp.error.message }));
           })
@@ -25,16 +30,42 @@ export class CharactersEffects {
     )
   );
 
-  LoadCharacter$ = createEffect(() =>
+  LoadRandomCharacter$ = createEffect(() => // loadType, id, successType
     this.actions$.pipe(
-      ofType(ECharactersActions.LoadCharacter),
+      ofType(ECharactersActions.LoadRandomCharacter),
       switchMap(({id}) => this.charactersService.getCharacter(id)
-      .pipe(
-        map(char => ({ type: ECharactersActions.CharLoadedSuccess, payload: char })),
-        // catchError((error: { message: string }) => {
-        //  return of(CharsListLoadedFailure({ errMsg: error.message }));
-        // })
-      ))
+        .pipe(
+          map(char => LoadRandomCharSuccess({ randomChar: char})),
+          // catchError((error: { message: string }) => {
+          //  return of(CharsListLoadedFailure({ errors: error.message }));
+          // })
+        ))
+    )
+  );
+
+  LoadInfoCharacter$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ECharactersActions.LoadCharacterInfo),
+      switchMap(({id}) => this.charactersService.getCharacter(id)
+        .pipe(
+          map(char => LoadCharInfoSuccess({ character: char})),
+          // catchError((error: { message: string }) => {
+          //  return of(CharsListLoadedFailure({ errors: error.message }));
+          // })
+        ))
+    )
+  );
+
+  LoadCharacterDetails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ECharactersActions.LoadCharacterDetails),
+      switchMap(({id}) => this.charactersService.getCharacter(id)
+        .pipe(
+          map(char => LoadCharDetailsSuccess({ character: char})),
+          // catchError((error: { message: string }) => {
+          //  return of(CharsListLoadedFailure({ errors: error.message }));
+          // })
+        ))
     )
   );
 
