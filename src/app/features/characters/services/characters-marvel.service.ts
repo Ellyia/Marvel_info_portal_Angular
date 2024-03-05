@@ -14,7 +14,7 @@ export class CharactersMarvelService {
   ) {}
 
   getCharacters(charsLimit: number, charsOffset: number): Observable<CustomMarvelChar[]> {
-    this.spinnerService.startLoading(); // to interseptor
+    this.spinnerService.startLoading();
 
     return this.http.get<MarvelApiCharsResponse>(`/characters?limit=${charsLimit}&offset=${charsOffset}`)
       .pipe(
@@ -24,7 +24,7 @@ export class CharactersMarvelService {
   }
 
   getCharacter(id: number): Observable<CustomMarvelChar> {
-    this.spinnerService.startLoading(); // to interseptor
+    this.spinnerService.startLoading();
 
     return this.http.get<MarvelApiCharsResponse>(`/characters/${id}`)
       .pipe(

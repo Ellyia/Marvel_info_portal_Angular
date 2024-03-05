@@ -1,9 +1,9 @@
 
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { BannerComponent } from '@core/components/banner/banner.component';
 import { amountOfReceivedComics, selectComicsList } from 'app/store/selectors/comics.selectors';
@@ -23,15 +23,17 @@ import { ComicCardComponent } from './components/comic-card/comic-card.component
   templateUrl: './comics.component.html',
   styleUrl: './comics.component.scss'
 })
-export class ComicsComponent {
+export class ComicsComponent implements OnDestroy {
 
   comicsList$: Observable<CustomMarvelComic[]> = this.store.select(selectComicsList);
   amountOfReceivedComics$: Observable<number> = this.store.select(amountOfReceivedComics);
 
+  unsubscribe$: Subject<void> = new Subject();
+
   amountOfReceivedComics: number = 0;
 
   comicsLimit: number = 15;
-  comicsOffset: number = 10;
+  comicsOffset: number = 0;
 
   constructor(
     private router: Router,
@@ -47,10 +49,13 @@ export class ComicsComponent {
       count: this.comicsLimit
     }))
 
-    this.amountOfReceivedComics$.subscribe(
-      res => {
+    this.amountOfReceivedComics$
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
+      .subscribe(res => {
         this.amountOfReceivedComics = res;
-    })
+      })
   }
 
   loadMore(): void {
@@ -60,5 +65,10 @@ export class ComicsComponent {
 
   showComic(id: number): void {
     this.router.navigate([`comics/${id}`]);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

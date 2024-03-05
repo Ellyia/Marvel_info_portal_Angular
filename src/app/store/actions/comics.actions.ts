@@ -7,18 +7,28 @@ import { BackendErrorsInterface } from './characters.actions';
 export const LoadComicsList = createAction(
   EComicsActions.LoadComicsList,
   props<{ start: number; count: number }>()
-)
+);
 
 export const LoadComicsListSuccess = createAction(
   EComicsActions.ComicsListLoadedSuccess,
   props<{ comics: CustomMarvelComic[] } >()
-)
+);
 
 export const LoadComicsListFailure = createAction(
   EComicsActions.ComicsListLoadedFailure,
   props<{ errors: BackendErrorsInterface }>()
-)
+);
 
 export const ResetComicsList = createAction(
   EComicsActions.ResetComicsList
-)
+);
+//
+export const LoadComic = createAction(
+  EComicsActions.LoadComic,
+  props<{ comicId: number }>()
+);
+
+export const LoadComicSuccess = createAction(
+  EComicsActions.ComicLoadedSuccess,
+  props<{ comic: CustomMarvelComic }>()
+);

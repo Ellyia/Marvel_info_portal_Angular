@@ -3,7 +3,7 @@ import { BackendErrorsInterface } from "../actions/characters.actions";
 
 export interface IComicsState {
   comicsList: CustomMarvelComic[];
-  comic: CustomMarvelComic | null;
+  comicDetails: CustomMarvelComic | null;
   requestErrors: BackendErrorsInterface | null;
   comicsLimit: number;
   comicsOffset: number;
@@ -12,7 +12,7 @@ export interface IComicsState {
 
 export const initialComicsState: IComicsState = {
   comicsList: [],
-  comic: null,
+  comicDetails: null,
   requestErrors: null,
   comicsLimit: 16,
   comicsOffset: 0,

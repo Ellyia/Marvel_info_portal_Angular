@@ -1,12 +1,17 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { MarvelChar } from '@characters/models/characters.model';
-import { CharactersMarvelService } from '@characters/services/characters-marvel.service';
 import { CharacterSearchStatusEnum } from '@characters/enums/characters.enum';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'app/store/state/app.state';
+import { selectCharactersName } from 'app/store/selectors/characters.selectors';
+import { LoadCharName } from 'app/store/actions/characters.actions';
 
+@UntilDestroy()
 @Component({
   selector: 'find-character-form',
   standalone: true,
@@ -14,14 +19,12 @@ import { CharacterSearchStatusEnum } from '@characters/enums/characters.enum';
   templateUrl: './find-character-form.component.html',
   styleUrl: './find-character-form.component.scss'
 })
-export class FindCharacterFormComponent implements OnDestroy {
+export class FindCharacterFormComponent {
 
+  character$: Observable<MarvelChar | null> = this.store.select(selectCharactersName);
   characterSearchStatusEnum = CharacterSearchStatusEnum;
 
-  subs!: Subscription;
-
   character!: MarvelChar;
-
   searchStatus: CharacterSearchStatusEnum = CharacterSearchStatusEnum.ClearMsg;
 
   charFinderForm = new FormGroup({
@@ -29,18 +32,23 @@ export class FindCharacterFormComponent implements OnDestroy {
   });
 
   constructor(
-    private charactersService: CharactersMarvelService,
-    private router: Router
+    private router: Router,
+    private store: Store<IAppState>
   ) {}
 
   onSearchCharacter(): void {
     if (this.charFinderForm.value.charName) {
 
-      this.subs = this.charactersService.getCharacterByName(this.charFinderForm.value.charName)
-        .subscribe(resp => {
-          this.character = resp;
+      this.store.dispatch(LoadCharName({ name: this.charFinderForm.value.charName }));
 
-          this.searchStatus = resp ? CharacterSearchStatusEnum.Found : CharacterSearchStatusEnum.NotFound;
+      this.character$.pipe(untilDestroyed(this))
+        .subscribe(resp => {
+          if (resp) {
+            this.character = resp;
+            this.searchStatus = CharacterSearchStatusEnum.Found;
+          } else if (resp === undefined) {
+            this.searchStatus = CharacterSearchStatusEnum.NotFound;
+          }
         });
     } else {
       this.searchStatus = CharacterSearchStatusEnum.EmptyInput;
@@ -53,9 +61,5 @@ export class FindCharacterFormComponent implements OnDestroy {
 
   navigateToCharPage(obj: MarvelChar): void {
     this.router.navigate([`/characters/${obj.id}`]);
-  }
-
-  ngOnDestroy(): void {
-    this.subs?.unsubscribe();
   }
 }

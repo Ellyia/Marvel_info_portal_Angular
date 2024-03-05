@@ -33,7 +33,7 @@ export class CharactersComponent {
   character$: Observable<CustomMarvelChar | null> = this.store.select(selectInfoCharacter);
 
   charsLimit: number = 16; // 109 = err 409
-  charsOffset: number = 0; // start
+  charsOffset: number = 0;
 
   constructor(private store: Store<IAppState>){
     this.store.dispatch(ResetCharsList());

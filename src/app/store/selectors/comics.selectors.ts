@@ -14,3 +14,8 @@ export const amountOfReceivedComics = createSelector(
   selectComics,
   (state: IComicsState) => state.amountOfReceivedComics
 )
+
+export const selectComic = createSelector(
+  selectComics,
+  (state: IComicsState) => state.comicDetails
+);

@@ -29,3 +29,8 @@ export const selectCharacterDetails = createSelector(
   selectCharacters,
   (state: ICharactersState) => state.characterDetails
 );
+
+export const selectCharactersName = createSelector(
+  selectCharacters,
+  (state: ICharactersState) => state.charactersName
+);

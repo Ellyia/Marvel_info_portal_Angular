@@ -16,4 +16,7 @@ export enum ECharactersActions {
   //
   LoadCharacterDetails = '[Characters] Load Character Details',
   LoadCharacterDetailsSuccess = '[Characters] Load Character Details Success',
+  //
+  LoadCharacterName = '[Characters] Load Character Name',
+  LoadCharacterNameSuccess = '[Characters] Load Character Name Success',
 }

@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { CustomMarvelChar } from '@characters/models/characters.model';
 import { BannerComponent } from '@core/components/banner/banner.component';
-import { LoadCharInfo } from 'app/store/actions/characters.actions';
+import { LoadCharDetails, LoadCharInfo } from 'app/store/actions/characters.actions';
 import { selectCharacterDetails } from 'app/store/selectors/characters.selectors';
 import { IAppState } from 'app/store/state/app.state';
 
@@ -32,12 +32,12 @@ export class CharacterDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.id = +(this.route.snapshot.paramMap.get('id') || 0);
 
-    this.store.dispatch(LoadCharInfo({ id: this.id}));
+    this.store.dispatch(LoadCharDetails({ id: this.id}));
 
     this.subs = this.character$.subscribe(char => {
       this.character = char;
-    })
-  }
+    });
+  };
 
   ngOnDestroy(): void {
     this.subs?.unsubscribe();

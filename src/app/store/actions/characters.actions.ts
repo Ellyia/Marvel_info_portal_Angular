@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { CustomMarvelChar } from '@characters/models/characters.model';
+import { CustomMarvelChar, MarvelChar } from '@characters/models/characters.model';
 import { ECharactersActions } from '../enums/characters-actions.enum';
 
 export interface GetCharactersRequestInterface {
@@ -10,6 +10,10 @@ export interface GetCharactersRequestInterface {
 
 export interface BackendErrorsInterface {
   message: string
+  error: {
+    status: string
+    code: number
+  }
 }
 
 export const LoadCharsList = createAction(
@@ -24,7 +28,7 @@ export const LoadCharsListSuccess = createAction(
 
 export const CharsListLoadedFailure = createAction(
   ECharactersActions.CharsListLoadedFailure,
-  props<{ errors: BackendErrorsInterface}>()
+  props<{ errors: BackendErrorsInterface }>()
 );
 
 export const ResetCharsList = createAction(
@@ -85,3 +89,15 @@ export const LoadCharDetailsSuccess = createAction(
   ECharactersActions.LoadCharacterDetailsSuccess,
   props<{ character: CustomMarvelChar }>()
 );
+
+// name
+
+export const LoadCharName = createAction(
+  ECharactersActions.LoadCharacterName,
+  props<{ name: string }>()
+)
+
+export const LoadCharNameSuccess = createAction(
+  ECharactersActions.LoadCharacterNameSuccess,
+  props<{ charByName: MarvelChar }>()
+)

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { CustomMarvelChar } from '@characters/models/characters.model';
 import { IAppState } from 'app/store/state/app.state';
-import { LoadRandomChar } from 'app/store/actions/characters.actions';
-import { selectRandomCharacter } from 'app/store/selectors/characters.selectors';
+import { BackendErrorsInterface, LoadRandomChar } from 'app/store/actions/characters.actions';
+import { selectRandomCharacter, selectRequestErrors } from 'app/store/selectors/characters.selectors';
 
 @Component({
   selector: 'app-random-character',
@@ -17,21 +17,33 @@ import { selectRandomCharacter } from 'app/store/selectors/characters.selectors'
 export class RandomCharacterComponent implements OnInit, OnDestroy {
 
   randomChar$: Observable<CustomMarvelChar | null> = this.store.select(selectRandomCharacter);
+  errors$: Observable<BackendErrorsInterface | null> = this.store.select(selectRequestErrors);
 
-  subs!: Subscription;
+  unsubs$: Subject<void> = new Subject;
 
   randomChar: CustomMarvelChar | null = null;
 
   constructor(private store: Store<IAppState>){}
 
   ngOnInit(): void {
-    this.subs = this.randomChar$.subscribe(randomCar => {
-      this.randomChar = randomCar;
-    })
+
+    this.randomChar$
+      .pipe(
+        takeUntil(this.unsubs$)
+      )
+      .subscribe(randomCar => {
+        this.randomChar = randomCar;
+      })
 
     if (!this.randomChar) {
       this.updateChar();
     }
+
+    this.errors$.pipe(takeUntil(this.unsubs$)).subscribe(err => {
+      if (err?.error.code === 404) {
+        this.updateChar();
+      }
+    });
   }
 
   updateChar(): void {
@@ -45,6 +57,7 @@ export class RandomCharacterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.unsubs$.next();
+    this.unsubs$.complete();
   }
 }

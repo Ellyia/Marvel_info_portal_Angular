@@ -10,7 +10,10 @@ import {
   LoadRandomCharSuccess,
   LoadCharInfo,
   LoadCharInfoSuccess,
-  LoadCharDetailsSuccess
+  LoadCharDetailsSuccess,
+  LoadRandomCharFailure,
+  LoadCharName,
+  LoadCharNameSuccess
 } from '../actions/characters.actions';
 import { initialCharactersState } from '../state/characters.state';
 
@@ -18,7 +21,7 @@ export const charactersReducer = createReducer(
   initialCharactersState,
   on(LoadCharsList, (state) => ({
     ...state,
-    requestErrors: null
+    requestErrors: null,
   })),
   on(LoadCharsListSuccess, (state, { characters }) => ({
     ...state,
@@ -41,6 +44,10 @@ export const charactersReducer = createReducer(
     ...state,
     randomCharacter: randomChar
   })),
+  on(LoadRandomCharFailure, (state, {errors}) => ({ //
+    ...state,
+    requestErrors: errors
+  })),
   // info
   on(LoadCharInfo, (state) => ({
     ...state
@@ -51,10 +58,23 @@ export const charactersReducer = createReducer(
   })),
   // details
   on(LoadCharDetails, (state) => ({
-    ...state
+    ...state,
+    characterDetails: null
   })),
   on(LoadCharDetailsSuccess, (state, {character}) => ({
     ...state,
     characterDetails: character
   })),
+  // name
+  on(LoadCharName, (state) => ({
+    ...state,
+    charactersName: null
+  })),
+  on(LoadCharNameSuccess, (state, { charByName }) => ({
+    ...state,
+    charactersName: charByName
+  })),
+  // on(LoadCharNameFailure, (state) => ({
+  //   ...state
+  // }))
 );

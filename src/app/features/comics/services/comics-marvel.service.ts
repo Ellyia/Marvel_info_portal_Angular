@@ -17,7 +17,7 @@ export class ComicsMarvelService {
 
   getComics(comicsLimit: number, comicsOffset: number): Observable<CustomMarvelComic[]> {
 
-    this.spinnerService.startLoading(); // to interseptor
+    this.spinnerService.startLoading();
 
     return this.http.get<MarvelApiComicsResponse>(`/comics?limit=${comicsLimit}&offset=${comicsOffset}`)
       .pipe(
